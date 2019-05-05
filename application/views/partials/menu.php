@@ -16,6 +16,7 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="<?= base_url().'assets/css/style.css'?>">
+  <link rel="stylesheet" href="<?= base_url().'assets/css/custom.css'?>">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url().'assets/images/favicon.png'?>" />
 </head>
@@ -161,7 +162,7 @@
           </li>
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              <span class="profile-text">Hello, Richard V.Welsh !</span>
+              <span class="profile-text">Hello, <?= $this->session->userdata('nama') ?></span>
               <img class="img-xs rounded-circle" src="<?= base_url().'assets/images/faces/face1.jpg' ?>" alt="Profile image">
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -210,7 +211,7 @@
                   <img src="<?= base_url().'assets/images/faces/face1.jpg' ?>" alt="profile image">
                 </div>
                 <div class="text-wrapper">
-                  <p class="profile-name">Richard V.Welsh</p>
+                  <p class="profile-name"><?= $this->session->userdata('nama'); ?></p>
                   <div>
                     <small class="designation text-muted">Manager</small>
                     <span class="status-indicator online"></span>
@@ -223,27 +224,16 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../index.html">
+            <a class="nav-link" href="<?= base_url().'dashboard' ?>">
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="menu-icon mdi mdi-content-copy"></i>
-              <span class="menu-title">Basic UI Elements</span>
-              <i class="menu-arrow"></i>
+            <a href="<?= base_url().'user' ?>" class="nav-link">
+              <i class="menu-icon mdi mdi-account"></i>
+              <span class="menu-title">User</span>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="../../pages/ui-features/buttons.html">Buttons</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="../../pages/ui-features/typography.html">Typography</a>
-                </li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../../pages/forms/basic_elements.html">

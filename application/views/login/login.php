@@ -27,11 +27,14 @@
           <div class="col-lg-4 mx-auto">
             <h2 class="text-center mb-4">Login</h2>
             <div class="auto-form-wrapper">
-              <form action="#">
+              <?php
+                
+              ?>
+              <form action="<?= base_url().'login/loginAction' ?>" method="POST">
                 <div class="form-group">
                   <label class="label">Username</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Username">
+                    <input type="text" class="form-control" placeholder="Username" name="username">
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
@@ -42,7 +45,7 @@
                 <div class="form-group">
                   <label class="label">Password</label>
                   <div class="input-group">
-                    <input type="password" class="form-control" placeholder="*********">
+                    <input type="password" class="form-control" placeholder="*********" name="password">
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>

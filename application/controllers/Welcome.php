@@ -21,16 +21,11 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = 'Home';
-		$this->load->view('partials/main', $data);
-		$this->load->view('partials/file');
-		$this->load->view('partials/footer');
-		
-		
+		$this->load->view('login/login');
 	}
 
-	public function login()
-	{
-		$this->load->view('login/login');
+	// public function login()
+	// {
 		
-	}
+	// }
 }
