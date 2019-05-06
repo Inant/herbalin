@@ -22,13 +22,33 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <select name="" id="" class="form-control select2">
-                                    <option value="fasdfsdf">afddsfsdf</option>
-                                    <option value="dfdsfasd">sdfsdfsdf</option>
-                                </select>
-                                
+                                <!-- <div class="form-group row"> -->
+                                    <label class="">Gender</label>
+                                    <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-radio">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value checked> Laki-Laki
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="form-radio">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Prempuan
+                                            </label>
+                                        </div>
+                                    </div>
+                                    </div>
+                                <!-- </div> -->
                             </div>
+                  <div class="col-md-6">
+                        <p class="card-description">
+                        Address
+                        </p>
                         </div>
+                </div>
+              </div>
                     </form>
                 </div>
             </div>
