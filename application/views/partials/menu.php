@@ -8,6 +8,7 @@
     <title><?= $title ?></title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="<?= base_url().'assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css'?>">
+  <link rel="stylesheet" href="<?= base_url().'assets/vendors/iconfonts/font-awesome/css/font-awesome.css'?>">
   <link rel="stylesheet" href="<?= base_url().'assets/vendors/css/vendor.bundle.base.css'?>">
   <link rel="stylesheet" href="<?= base_url().'assets/vendors/css/vendor.bundle.addons.css'?>">
   <!-- endinject -->
@@ -16,9 +17,11 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="<?= base_url().'assets/css/style.css'?>">
+  <link href="<?= base_url().'assets/vendors/select2-develop/dist/css/select2.min.css'?>" rel="stylesheet">
   <link rel="stylesheet" href="<?= base_url().'assets/css/custom.css'?>">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url().'assets/images/favicon.png'?>" />
+  
 </head>
 
 <body>
@@ -40,7 +43,7 @@
               <span class="badge badge-primary ml-1">New</span>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="mdi mdi-elevation-rise"></i>Reports</a>
           </li>
@@ -213,7 +216,7 @@
                 <div class="text-wrapper">
                   <p class="profile-name"><?= $this->session->userdata('nama'); ?></p>
                   <div>
-                    <small class="designation text-muted">Manager</small>
+                    <small class="designation text-muted"><?= $this->session->userdata('level'); ?></small>
                     <span class="status-indicator online"></span>
                   </div>
                 </div>
@@ -229,12 +232,18 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
+          <?php
+          if ($this->session->userdata('level') == "Admin") {
+          ?>
           <li class="nav-item">
             <a href="<?= base_url().'user' ?>" class="nav-link">
               <i class="menu-icon mdi mdi-account"></i>
               <span class="menu-title">User</span>
             </a>
           </li>
+          <?php    
+            }
+          ?>
           <li class="nav-item">
             <a class="nav-link" href="../../pages/forms/basic_elements.html">
               <i class="menu-icon mdi mdi-backup-restore"></i>

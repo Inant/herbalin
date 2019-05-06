@@ -16,14 +16,19 @@
   <!-- container-scroller -->
   <!-- plugins:js -->
   <!-- plugins:js -->
+  
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+  <script src="<?= base_url().'assets/jquery/jquery-3.4.1.js' ?>"></script>
   <script src="<?= base_url().'assets/vendors/js/vendor.bundle.base.js'?>"></script>
   <script src="<?= base_url().'assets/vendors/js/vendor.bundle.addons.js' ?>"></script>
   <!-- endinject -->
   <!-- inject:js -->
   <script src="<?= base_url().'assets/js/off-canvas.js' ?>"></script>
   <script src="<?= base_url().'assets/js/misc.js' ?>"></script>
+
+  <script src="<?= base_url().'assets/vendors/select2-develop/dist/js/select2.min.js' ?>"></script>
   <!-- endinject -->
-  <script src="<?= base_url().'assets/jquery/jquery-3.4.1.js' ?>"></script>
+  <script src="<?= base_url().'assets/js/custom.js' ?>"></script>
 
   <!-- endinject -->
   <!-- Custom js for this page-->
