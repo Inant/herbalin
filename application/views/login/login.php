@@ -28,7 +28,13 @@
             <h2 class="text-center mb-4">Login</h2>
             <div class="auto-form-wrapper">
               <?php
-                
+                if ($this->session->flashdata('error')) {
+              ?>
+                  <div class="alert alert-danger" role="alert">
+                    <?= $this->session->flashdata('error') ?>
+                  </div>
+              <?php
+                }
               ?>
               <form action="<?= base_url().'login/loginAction' ?>" method="POST">
                 <div class="form-group">

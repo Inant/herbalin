@@ -35,12 +35,15 @@ class Login extends CI_Controller
                 'nama' => $cek['nama'],
                 'username' => $cek['username'],
                 'level' => $cek['level'],
-                'status' => 'Logged in'
+                'haslogin' => 'true'
             );
 
             $this->session->set_userdata($user);
-            
             redirect(base_url().'dashboard');
+        }
+        else{
+            $this->session->set_flashdata('error', 'Username atau password salah');
+            redirect(base_url().'login');
         }
     }
 

@@ -6,9 +6,9 @@ class Dashboard extends CI_Controller
 
     public function __construct() {
         parent::__construct();
-        if ($this->session->userdata('status') != 'Logged in') {
+        if ($this->session->userdata('haslogin') != 'true') {
+            $this->session->set_flashdata('error', 'Login terlebih dahulu');
             redirect(base_url().'login');
-            $this->session->set_flashdata('not_success', 'Login terlebih dahulu');
         }
     }
 
