@@ -3,27 +3,27 @@
     <div class="col-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-            <h5>Tambah User</h5>
+            <div class="row">
+              <div class="col-2">
+                <h5>Tambah User</h5>
+              </div>
+              <div class="col-2 ml-auto">
+                <a href="<?= base_url(). 'user/' ?>">
+                  <button class="btn btn-success btn-sm"><i class="fa fa-arrow-circle-left"></i> Kembali</button>
+                </a>
+              </div>
+            </div>
             <br>
             <?php
-              if ($this->session->flashdata('success')) {
-            ?>
-                <div class="alert alert-danger">
-                  <?= $this->session->flashdata('success') ?>
-                </div>
-            <?php
-              }
-              $filename = $this->MainModel->getData('max(id_user) as id', 'user', '', '', '');
-        if ($filename == null) {
-            $filename = 1;
-        }
-        else {
-            $filename = $filename[0]['id'];
-        }
-        echo $filename;
-            ?>
-
-            <form action="<?= base_url(). 'user/create' ?>" method="POST">
+                if ($this->session->flashdata('success')) {
+              ?>
+                  <div class="alert alert-success" role="alert">
+                    <?= $this->session->flashdata('success') ?>
+                  </div>
+              <?php
+                }
+              ?>
+            <form action="<?= base_url(). 'user/create' ?>" enctype="multipart/form-data" method="POST">
               <div class="row">
                 <div class="col-6 mb-3">
                   <label for="">Nama</label>

@@ -15,7 +15,7 @@
                     <form action="" method="get">
                         <div class="row">
                             <div class="col-sm-2 ">
-                                <a href="<?= base_url(). 'user/create' ?>" class="btn btn-success btn-sm">Tambah</a>
+                                <a href="<?= base_url(). 'user/create' ?>" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Tambah</a>
                             </div>
                             <div class="col-md-3 ml-auto">
                                 <div class="input-group">
@@ -56,16 +56,24 @@
                                     <td><?= $no ?></td>
                                     <td>
                                         <div class="pofile-image">
-                                        <img src="<?= base_url().'upload/fotouser/IMG_3875.JPG' ?>" alt=""></td>
+                                        <img src="<?= base_url().'upload/fotouser/'.$key['foto']?>" alt=""></td>
                                         </div>
                                     </td>    
                                     <td><?= $key['nama'] ?></td>
-                                    <td><?= $key['tgl_lahir'] ?></td>
+                                    <td><?= date('d-m-Y', strtotime($key['tgl_lahir'])) ?></td>
                                     <td><?= $key['gender'] ?></td>
                                     <td><?= $key['no_hp'] ?></td>
                                     <td><?= $key['alamat'] ?></td>
                                     <td><?= $key['username'] ?></td>
                                     <td><?= $key['level'] ?></td>
+                                    <td>
+                                        <a href="<?= base_url(). 'user/edit/'.$key['id_user'] ?>">
+                                            <button class="btn btn-primary btn-sm"> Edit </button>
+                                        </a>
+                                        <a href="<?= base_url().'user/changeStatus/'.$key['id_user'] ?>">
+                                            <button class="btn <?= $key['status'] == 'Aktif' ? 'btn-success' : 'btn-danger' ?> btn-sm"><?= $key['status'] ?></button>
+                                        </a>
+                                    </td>
                                 </tr>
                             <?php
                                 }

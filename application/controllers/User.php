@@ -76,16 +76,9 @@ class User extends CI_Controller
 
     public function uploadFoto()
     {
-        $filename = $this->MainModel->getData('max(id_user) + 1 as id', 'user', '', '', '');
-        if ($filename == null) {
-            $filename = 1;
-        }
-        else {
-            $filename = $filename[0]['id'];
-        }
+        
         $config['upload_path'] = './upload/fotouser/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['file_name'] = $filename;
         $config['overwrite'] = true;
         $config['max_size']  = 1024;
         //$config['max_width']  = '1024';
@@ -94,7 +87,7 @@ class User extends CI_Controller
         $this->load->library('upload', $config);
         
         if ($this->upload->do_upload('foto')){
-        return $this->upload->data('file_name');
+            return str_replace(' ', '_', $_FILES['foto']['name']);
         }
 
         return 'default.jpg';
@@ -108,10 +101,9 @@ class User extends CI_Controller
         $validation->set_rules($this->rules());
 
         if ($validation->run()) {
-            // $this->session->flashdata('success', 'Berhasil disimpan');
-            // redirect(base_url(). 'user/create');
             
-            $this->input = array(
+            
+            $this->data = array(
                 'nama' => $this->input->post('nama'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
                 'gender' => $this->input->post('gender'),
@@ -125,11 +117,12 @@ class User extends CI_Controller
                 'status' => $this->input->post('status'),
             );
 
-            echo "<pre>";
-            print_r ($this->input);
-            echo "</pre>";
-
-            // $this->mainmodel->insert('user', $this->input->);
+            // echo "<pre>";
+            // print_r ($this->input);
+            // echo "</pre>";
+            $this->MainModel->insert('user', $this->data);
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
+            redirect(base_url(). 'user/create');
 
         }
         else{
