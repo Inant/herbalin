@@ -242,6 +242,26 @@
             }
           ?>
           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#obat" aria-expanded="false" aria-controls="obat">
+              <i class="menu-icon mdi mdi-pill"></i>
+              <span class="menu-title">Obat</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="obat">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/ui-features/buttons.html">Satuan Obat</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/ui-features/typography.html">Kategori Obat</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/ui-features/typography.html">Obat</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="../../pages/forms/basic_elements.html">
               <i class="menu-icon mdi mdi-backup-restore"></i>
               <span class="menu-title">Form elements</span>
