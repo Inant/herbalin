@@ -67,7 +67,7 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="images/faces/face4.jpg" alt="image" class="profile-pic">
+                  <img src="" alt="image" class="profile-pic">
                 </div>
                 <div class="preview-item-content flex-grow">
                   <h6 class="preview-subject ellipsis font-weight-medium text-dark">David Grey
@@ -166,7 +166,7 @@
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">Hello, <?= $this->session->userdata('nama') ?></span>
-              <img class="img-xs rounded-circle" src="<?= base_url().'assets/images/faces/face1.jpg' ?>" alt="Profile image">
+              <img class="img-xs rounded-circle" src="<?= base_url(). 'upload/fotouser/'.$this->session->userdata('foto') ?>" alt="Profile image">
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <a class="dropdown-item p-0">
@@ -191,7 +191,7 @@
               <a class="dropdown-item">
                 Check Inbox
               </a>
-              <a class="dropdown-item">
+              <a href="<?= base_url(). 'login/logout' ?>" class="dropdown-item">
                 Sign Out
               </a>
             </div>
@@ -211,7 +211,7 @@
             <div class="nav-link">
               <div class="user-wrapper">
                 <div class="profile-image">
-                  <img src="<?= base_url().'assets/images/faces/face1.jpg' ?>" alt="profile image">
+                  <img src="<?= base_url().'upload/fotouser/'.$this->session->userdata('foto') ?>" alt="profile image">
                 </div>
                 <div class="text-wrapper">
                   <p class="profile-name"><?= $this->session->userdata('nama'); ?></p>
@@ -221,9 +221,6 @@
                   </div>
                 </div>
               </div>
-              <button class="btn btn-success btn-block">New Project
-                <i class="mdi mdi-plus"></i>
-              </button>
             </div>
           </li>
           <li class="nav-item">
@@ -245,7 +242,31 @@
             }
           ?>
           <li class="nav-item">
+<<<<<<< HEAD
           <a class="nav-link" href="../../pages/charts/chartjs.html">
+=======
+            <a class="nav-link" data-toggle="collapse" href="#obat" aria-expanded="false" aria-controls="obat">
+              <i class="menu-icon mdi mdi-pill"></i>
+              <span class="menu-title">Obat</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="obat">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/ui-features/buttons.html">Satuan Obat</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/ui-features/typography.html">Kategori Obat</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="pages/ui-features/typography.html">Obat</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../pages/forms/basic_elements.html">
+>>>>>>> a51a17e5836b3dbffe300675132b512b9c6d0f96
               <i class="menu-icon mdi mdi-backup-restore"></i>
               <span class="menu-title">Chart</span>
             </a>
