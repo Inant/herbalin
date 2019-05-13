@@ -242,9 +242,6 @@
             }
           ?>
           <li class="nav-item">
-<<<<<<< HEAD
-          <a class="nav-link" href="../../pages/charts/chartjs.html">
-=======
             <a class="nav-link" data-toggle="collapse" href="#obat" aria-expanded="false" aria-controls="obat">
               <i class="menu-icon mdi mdi-pill"></i>
               <span class="menu-title">Obat</span>
@@ -266,7 +263,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../../pages/forms/basic_elements.html">
->>>>>>> a51a17e5836b3dbffe300675132b512b9c6d0f96
               <i class="menu-icon mdi mdi-backup-restore"></i>
               <span class="menu-title">Chart</span>
             </a>
