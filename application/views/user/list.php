@@ -12,6 +12,15 @@
                 <div class="card-body">
                     <h5>List User</h5>
                     <br>
+                    <?php
+                        if ($this->session->flashdata('success')) {
+                    ?>
+                        <div class="alert alert-success" role="alert">
+                            <?= $this->session->flashdata('success') ?>
+                        </div>
+                    <?php
+                        }
+                    ?>
                     <form action="" method="get">
                         <div class="row">
                             <div class="col-sm-2 ">
@@ -69,9 +78,6 @@
                                     <td>
                                         <a href="<?= base_url(). 'user/edit/'.$key['id_user'] ?>">
                                             <button class="btn btn-primary btn-sm"> Edit </button>
-                                        </a>
-                                        <a href="<?= base_url().'user/changeStatus/'.$key['id_user'] ?>">
-                                            <button class="btn <?= $key['status'] == 'Aktif' ? 'btn-success' : 'btn-danger' ?> btn-sm"><?= $key['status'] ?></button>
                                         </a>
                                     </td>
                                 </tr>

@@ -13,6 +13,11 @@ class Login extends CI_Controller
         $this->load->view('login/login');
     }
 
+    private function hash_password($password){
+        return password_hash($password, PASSWORD_BCRYPT);
+    }
+
+
     public function loginAction()
     {
         $username = $this->input->post('username');
@@ -24,7 +29,7 @@ class Login extends CI_Controller
             'status' => 'Aktif'
         );
 
-        $cek = $this->LoginModel->cekLogin($where)->first_row('array');
+        $cek = $this->LoginModel->login($username, $password);
 
         if ($cek != NULL) {
             // echo "<pre>";
@@ -34,6 +39,7 @@ class Login extends CI_Controller
             $user = array(
                 'nama' => $cek['nama'],
                 'username' => $cek['username'],
+                'foto' => $cek['foto'],
                 'level' => $cek['level'],
                 'haslogin' => 'true'
             );
