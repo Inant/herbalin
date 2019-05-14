@@ -264,13 +264,13 @@
           <li class="nav-item">
             <a class="nav-link" href="../../pages/forms/basic_elements.html">
               <i class="menu-icon mdi mdi-backup-restore"></i>
-              <span class="menu-title">Form elements</span>
+              <span class="menu-title">Chart</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/charts/chartjs.html">
+          <a href="<?= base_url().'kategori' ?>" class="nav-link">
               <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">Charts</span>
+              <span class="menu-title">kategori</span>
             </a>
           </li>
           <li class="nav-item">

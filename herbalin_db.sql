@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 10, 2019 at 09:49 AM
+-- Generation Time: May 02, 2019 at 10:43 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -221,23 +221,11 @@ CREATE TABLE `user` (
   `alamat` text NOT NULL,
   `no_hp` varchar(13) NOT NULL,
   `agama` varchar(15) NOT NULL,
-  `foto` varchar(64) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(64) NOT NULL,
   `level` enum('Admin','Resepsionis','Perawat','Farmasi','Kasir','Owner') NOT NULL,
   `status` enum('Aktif','Non Aktif') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id_user`, `nama`, `tgl_lahir`, `gender`, `alamat`, `no_hp`, `agama`, `foto`, `username`, `password`, `level`, `status`) VALUES
-(1, 'Inant Kharisma', '1999-05-04', 'Laki-laki', 'Jl. Mastrip 7', '082359382266', 'Islam', 'face21.jpg', 'inant', '$2y$12$lGta2RXZq7loNjhCD15uIeMYAUaC0w2KaPtw/BpwPn82A.lCKk.I.', 'Admin', 'Aktif'),
-(2, 'Kahfinda kevin', '1998-09-09', 'Laki-laki', 'Alamat', '085235711871', 'Islam', 'face22.jpg', 'kevin', '$2y$10$PJMp77Y6Fws9UfkVrvGYWOmy0gIt7sF.4tUwbJn2jkHkdYjl.D1M2', 'Resepsionis', 'Aktif'),
-(3, 'Iyek', '1999-08-09', 'Laki-laki', 'Alamat', '085235711873', 'Islam', 'face18.jpg', 'iyek', '$2y$10$sB2jVZufcz.xdm583xGrbOLxv7RJO5EKAgYH9LRMSwxTnKiPm/E2e', 'Perawat', 'Aktif'),
-(4, 'Leli', '1999-07-09', 'Laki-laki', 'Alamat', '08523571187', 'Islam', 'face26.jpg', 'leli', '$2y$10$3AvFCCnNaD7Zk5HN2xgJo.6ZkqR1JABES/a8MDYogCK8Ru9q68XC.', 'Farmasi', 'Aktif'),
-(5, 'Salman', '1998-08-07', 'Laki-laki', 'Mastrip 5', '085235711876', 'Islam', 'face4.jpg', 'salman', '$2y$10$WfrPYpfW0P0IPg/O1MErGeWGeVkHm.iVV75V.0Uqxbur24Hzopfvy', 'Admin', 'Aktif');
 
 --
 -- Indexes for dumped tables
@@ -428,7 +416,7 @@ ALTER TABLE `tindakan`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` tinyint(3) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
