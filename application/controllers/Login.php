@@ -17,17 +17,17 @@ class Login extends CI_Controller
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
+
     public function loginAction()
     {
         $username = $this->input->post('username');
-        // $password = $this->hash_password($this->input->post('password'));
         $password = $this->input->post('password');
 
-        // $where = array(
-        //     'username' => $username, 
-        //     'password' => $password,
-        //     'status' => 'Aktif'
-        // );
+        $where = array(
+            'username' => $username, 
+            'password' => $password,
+            'status' => 'Aktif'
+        );
 
         $cek = $this->LoginModel->login($username, $password);
 

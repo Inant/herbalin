@@ -156,6 +156,7 @@ class User extends CI_Controller
 
         if ($validation->run()) {
             
+            
             $this->data = array(
                 'nama' => $this->input->post('nama'),
                 'tgl_lahir' => $this->input->post('tgl_lahir'),
