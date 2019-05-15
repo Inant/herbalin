@@ -250,7 +250,7 @@
             <div class="collapse" id="obat">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/buttons.html">Satuan Obat</a>
+                <a href="<?= base_url().'satuanobat' ?>"class="nav-link">Satuan Obat</a>
                 </li>
                 <li class="nav-item">
                   <a href="<?= base_url().'kategori' ?>"class="nav-link">Kategori Obat</a>

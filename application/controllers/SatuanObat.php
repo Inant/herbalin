@@ -72,7 +72,7 @@ class SatuanObat extends CI_Controller
         }
 
         $validation = $this->form_validation;
-        $validation =$validation->set_message(array(
+        $validation = $validation->set_message(array(
             'required' => 'Tidak boleh kosong.',
         ));
         
