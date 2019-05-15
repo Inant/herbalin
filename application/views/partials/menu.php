@@ -256,7 +256,7 @@
                   <a href="<?= base_url().'kategori' ?>"class="nav-link">Kategori Obat</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="pages/ui-features/typography.html">Obat</a>
+                <a href="<?= base_url().'obat' ?>"class="nav-link">Obat</a>
                 </li>
               </ul>
             </div>
