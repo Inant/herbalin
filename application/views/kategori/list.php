@@ -45,6 +45,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Kategori</th>
+                                    <th>status</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
@@ -58,6 +59,7 @@
                                     <td><?= $no ?></td>
                                      
                                     <td><?= $key['kategori'] ?></td>
+                                    <td><?= $key['status'] ?></td>
                                     <td>
 
                                         <a href="<?= base_url(). 'kategori/edit/'.$key['id_kategori'] ?>">
