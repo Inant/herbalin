@@ -47,11 +47,12 @@
                             
                                 foreach ($satuan_obat as $key) {
                                     $no++;
+                                    $statusClass = $key['status'] == 'Aktif' ? 'badge badge-success' : 'badge badge-danger'; 
                             ?>
                                 <tr>
                                     <td><?= $no ?></td>
                                     <td><?= $key['satuan'] ?></td>
-                                    <td><?= $key['status'] ?></td>
+                                    <td><span class="<?= $statusClass ?>"><?= $key['status'] ?></span></td>
                                     <td>
                                         <a href="<?= base_url(). 'satuanobat/edit/'.$key['id_satuan'] ?>">
                                             <button class="btn btn-primary btn-sm"> Edit </button>
