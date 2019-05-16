@@ -34,17 +34,33 @@
             </div>
             </div>
             <div class="col-6 mb-3">
-            <label for="">Id Kategori</label>
-            <input type="text" name="id_kategori" id="id_kategori" class="form-control <?= form_error('id_kategori') ? 'is-invalid': ''?>"
-            placeholder="Id Kategori" value="<?= set_value('id_kategori') ?>">
+            <label for="">Kategori</label>
+            <select name="id_kategori" id="id_kategori" class="form-control <?= form_error('id_kategori') ? 'is-invalid' : '' ?>">
+              <option value="">--Pilih Kategori--</option>
+              <?php
+              foreach ($kategori as $key => $value) {
+              ?>
+                <option value="<?= $value['id_kategori'] ?>"<?= set_value('id_kategori') == $value['id_kategori'] ? 'selected' : '' ?>><?= $value['kategori'] ?></option>
+              <?php
+              }
+              ?>  
+            </select>
             <div class="invalid-feedback">
                 <?= form_error('id_kategori')?>
             </div>
             </div>
             <div class="col-6 mb-3">
-            <label for="">Id Satuan</label>
-            <input type="text" name="id_satuan" id="id_satuan" class="form-control <?= form_error('id_satuan') ? 'is-invalid': ''?>"
-            placeholder="Id Satuan" value="<?= set_value('id_satuan') ?>">
+            <label for="">Satuan</label>
+            <select name="id_satuan" id="id_satuan" class="form-control <?= form_error('id_satuan') ? 'is-invalid' : '' ?>">
+              <option value="">--Pilih Satuan--</option>
+              <?php
+              foreach ($satuan as $key => $value) {
+              ?>
+                <option value="<?= $value['id_satuan'] ?>" <?= set_value('id_satuan') == $value['id_satuan'] ? 'selected' : '' ?> ><?= $value['satuan'] ?></option>
+              <?php
+              }
+              ?>  
+            </select>
             <div class="invalid-feedback">
                 <?= form_error('id_satuan')?>
             </div>
@@ -74,14 +90,6 @@
             </div>
             </div>
             <div class="col-6 mb-3">
-            <label for="">Id User</label>
-            <input type="text" name="id_user" id="id_user" class="form-control <?= form_error('id_user') ? 'is-invalid': ''?>"
-            placeholder="Id User" value="<?= set_value('id_user') ?>">
-            <div class="invalid-feedback">
-                <?= form_error('id_user')?>
-            </div>
-            </div>
-            <div class="col-6 mb-3">
                     <!-- <div class="form-group row"> -->
                   <label class="">Status</label>
                   <div class="row">
@@ -105,6 +113,7 @@
                     <?= form_error('status') ?>
                   </div>
                 </div>
+                <div class="col-6"></div>
                 <div class="col-6">
                   <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Simpan</button>
                   <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-refresh"></i> Reset</button>

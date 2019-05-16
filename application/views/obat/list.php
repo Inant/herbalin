@@ -38,13 +38,13 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>
-                                    <th>Id Kategori</th>
-                                    <th>Id Satuan</th>
+                                    <th>Kategori</th>
+                                    <th>Satuan</th>
                                     <th>Harga Jual</th>
                                     <th>Stock</th>
                                     <th>Tanggal Kadaluarsa</th>
-                                    <th>Id user</th>
-                                    <th>Satus</th>
+                                    <th>User</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,19 +53,20 @@
                             
                                 foreach ($obat as $key) {
                                     $no++;
+                                    $statusClass = $key['status'] == 'Aktif' ? 'badge badge-success' : 'badge badge-danger'; 
                             ?>
                                 <tr>
                                     <td><?= $no ?></td>
                                     <td><?= $key['nama'] ?></td>
-                                    <td><?= $key['id_kategori'] ?></td>
-                                    <td><?= $key['id_satuan'] ?></td>
+                                    <td><?= $key['kategori'] ?></td>
+                                    <td><?= $key['satuan'] ?></td>
                                     <td><?= $key['harga_jual'] ?></td>
                                     <td><?= $key['stock'] ?></td>
                                     <td><?= $key['tgl_kadaluarsa'] ?></td>
-                                    <td><?= $key['id_user'] ?></td>
-                                    <td><?= $key['status'] ?></td>
+                                    <td><?= $key['nama_user'] ?></td>
+                                    <td><span class="<?= $statusClass ?>"><?= $key['status'] ?></span></td>
                                     <td>
-                                        <a href="<?= base_url(). 'obat/edit/'.$key['obat'] ?>">
+                                        <a href="<?= base_url(). 'obat/edit/'.$key['id_obat'] ?>">
                                             <button class="btn btn-primary btn-sm"> Edit </button>
                                         </a>
                                     </td>

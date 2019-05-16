@@ -54,12 +54,13 @@
                             $no = 0;
                                 foreach ($kategori as $key) {
                                     $no++;
+                                    $statusClass = $key['status'] == 'Aktif' ? 'badge badge-success' : 'badge badge-danger'; 
                             ?>
                                 <tr>
                                     <td><?= $no ?></td>
                                      
                                     <td><?= $key['kategori'] ?></td>
-                                    <td><?= $key['status'] ?></td>
+                                    <td><span class="<?= $statusClass ?>"><?= $key['status'] ?></span></td>
                                     <td>
 
                                         <a href="<?= base_url(). 'kategori/edit/'.$key['id_kategori'] ?>">

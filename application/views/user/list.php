@@ -52,6 +52,7 @@
                                     <th>Alamat</th>
                                     <th>Username</th>
                                     <th>Level</th>
+                                    <th>Status</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
@@ -60,6 +61,7 @@
                             $no = 0;
                                 foreach ($user as $key) {
                                     $no++;
+                                    $statusClass = $key['status'] == 'Aktif' ? 'badge badge-success' : 'badge badge-danger'; 
                             ?>
                                 <tr>
                                     <td><?= $no ?></td>
@@ -75,6 +77,7 @@
                                     <td><?= $key['alamat'] ?></td>
                                     <td><?= $key['username'] ?></td>
                                     <td><?= $key['level'] ?></td>
+                                    <td><span class="<?= $statusClass ?>"><?= $key['status'] ?></span></td>
                                     <td>
                                         <a href="<?= base_url(). 'user/edit/'.$key['id_user'] ?>">
                                             <button class="btn btn-primary btn-sm"> Edit </button>

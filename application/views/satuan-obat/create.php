@@ -33,7 +33,7 @@
                 <?= form_error('satuan')?>
             </div>
             </div>
-         <div class="col-6 mb-3">
+            <div class="col-6 mb-3">
                     <!-- <div class="form-group row"> -->
                   <label class="">Status</label>
                   <div class="row">

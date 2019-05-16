@@ -33,16 +33,17 @@
                   </div>
                 </div>
                     <!-- <div class="form-group row"> -->
+                <div class="col-6 mb-3">
                   <label class="">Status</label>
                   <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                       <div class="form-radio">
                         <label name="status" id="status" class="form-check-label">
                             <input type="radio" class="form-check-input <?= form_error('status') ? 'is-invalid' : '' ?>" name="status" id="status" value="Aktif" checked> Aktif
                         </label>
                       </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                       <div class="form-radio">
                         <label class="form-check-label">
                           <input type="radio" class="form-check-input <?= form_error('status') ? 'is-invalid' : '' ?>" name="status" id="status" value="Non Aktif"> Non Aktif
@@ -65,3 +66,4 @@
       </div>
     </div>
   </div>
+</div>

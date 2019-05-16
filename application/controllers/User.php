@@ -39,7 +39,7 @@ class User extends CI_Controller
             [
                 'field' => 'username',
                 'label' => 'Username',
-                'rules' => 'required|trim'
+                'rules' => 'required|trim|is_unique[user.username]'
             ],
             [
                 'field' => 'agama',

@@ -5,10 +5,10 @@
         <div class="card-body">
             <div class="row">
               <div class="col-2">
-                <h5>Tambah User</h5>
+                <h5>Edit Obat</h5>
               </div>
               <div class="col-2 ml-auto">
-                <a href="<?= base_url(). 'user' ?>">
+                <a href="<?= base_url(). 'obat' ?>">
                   <button class="btn btn-success btn-sm"><i class="fa fa-arrow-circle-left"></i> Kembali</button>
                 </a>
               </div>
@@ -23,23 +23,39 @@
               <div class="row">
                 <div class="col-6 mb-3">
                   <label for="">Nama</label>
-                  <input type="text" name="nama" id="nama" class="form-control <?= form_error('nama') ? 'is-invalid' : '' ?>" placeholder="Nama" value="<?= set_value('nama') ? set_value('nama') : $user[0]['nama'] ?>">
+                  <input type="text" name="nama" id="nama" class="form-control <?= form_error('nama') ? 'is-invalid' : '' ?>" placeholder="Nama" value="<?= set_value('nama') ? set_value('nama') : $obat[0]['nama'] ?>">
                   <div class="invalid-feedback">
                       <?= form_error('nama') ?>
                   </div>
                 </div>
                 <div class="col-6 mb-3">
-            <label for="">Id Kategori</label>
-            <input type="text" name="id_kategori" id="id_kategori" class="form-control <?= form_error('id_kategori') ? 'is-invalid': ''?>"
-            placeholder="Id Kategori" value="<?= set_value('id_kategori') ?>">
+            <label for="">Kategori</label>
+            <select name="id_kategori" id="id_kategori" class="form-control <?= form_error('id_kategori') ? 'is-invalid' : '' ?>">
+              <option value="">--Pilih Kategori--</option>
+              <?php
+              foreach ($kategori as $key => $value) {
+              ?>
+                <option value="<?= $value['id_kategori'] ?>"<?= $obat[0]['id_kategori'] == $value['id_kategori'] ? 'selected' : '' ?>><?= $value['kategori'] ?></option>
+              <?php
+              }
+              ?>  
+            </select>
             <div class="invalid-feedback">
                 <?= form_error('id_kategori')?>
             </div>
             </div>
             <div class="col-6 mb-3">
-            <label for="">Id Satuan</label>
-            <input type="text" name="id_satuan" id="id_satuan" class="form-control <?= form_error('id_satuan') ? 'is-invalid': ''?>"
-            placeholder="Id Satuan" value="<?= set_value('id_satuan') ?>">
+            <label for="">Satuan</label>
+            <select name="id_satuan" id="id_satuan" class="form-control <?= form_error('id_satuan') ? 'is-invalid' : '' ?>">
+              <option value="">--Pilih Satuan--</option>
+              <?php
+              foreach ($satuan as $key => $value) {
+              ?>
+                <option value="<?= $value['id_satuan'] ?>"<?= $obat[0]['id_satuan'] == $value['id_satuan'] ? 'selected' : '' ?>><?= $value['satuan'] ?></option>
+              <?php
+              }
+              ?>  
+            </select>
             <div class="invalid-feedback">
                 <?= form_error('id_satuan')?>
             </div>
@@ -47,7 +63,7 @@
             <div class="col-6 mb-3">
             <label for="">Harga Jual</label>
             <input type="number" name="harga_jual" id="satuan" class="form-control <?= form_error('harga_jual') ? 'is-invalid': ''?>"
-            placeholder="Harga Jual" value="<?= set_value('harga_jual') ?>">
+            placeholder="Harga Jual" value="<?= set_value('harga_jual') ? set_value('harga_jual') : $obat[0]['harga_jual'] ?>">
             <div class="invalid-feedback">
                 <?= form_error('harga_jual')?>
             </div>
@@ -55,7 +71,7 @@
             <div class="col-6 mb-3">
             <label for="">Stock</label>
             <input type="number" name="stock" id="stock" class="form-control <?= form_error('stock') ? 'is-invalid': ''?>"
-            placeholder="Stock" value="<?= set_value('stock') ?>">
+            placeholder="Stock" value="<?= set_value('stock') ? set_value('stock') : $obat[0]['stock'] ?>">
             <div class="invalid-feedback">
                 <?= form_error('stock')?>
             </div>
@@ -63,17 +79,9 @@
             <div class="col-6 mb-3">
             <label for="">Tanggal Kadaluarsa</label>
             <input type="date" name="tgl_kadaluarsa" id="tgl_kadaluarsa" class="form-control <?= form_error('tgl_kadaluarsa') ? 'is-invalid': ''?>"
-            placeholder="Tanggal Kadaluarsa" value="<?= set_value('tgl_kadaluarsa') ?>">
+            placeholder="Tanggal Kadaluarsa" value="<?= set_value('tgl_kadaluarsa') ? set_value('tgl_kadaluarsa') : $obat[0]['tgl_kadaluarsa'] ?>">
             <div class="invalid-feedback">
                 <?= form_error('tgl_kadaluarsa')?>
-            </div>
-            </div>
-            <div class="col-6 mb-3">
-            <label for="">Id User</label>
-            <input type="text" name="id_user" id="id_user" class="form-control <?= form_error('id_user') ? 'is-invalid': ''?>"
-            placeholder="Id User" value="<?= set_value('id_user') ?>">
-            <div class="invalid-feedback">
-                <?= form_error('id_user')?>
             </div>
             </div>
             <div class="col-6 mb-3">
@@ -83,14 +91,14 @@
                     <div class="col-sm-4">
                       <div class="form-radio">
                         <label name="status" id="status" class="form-check-label">
-                            <input type="radio" class="form-check-input <?= form_error('status') ? 'is-invalid' : '' ?>" name="status" id="status" value="Aktif" checked> Aktif
+                            <input type="radio" class="form-check-input <?= form_error('status') ? 'is-invalid' : '' ?>" name="status" id="status" value="Aktif" <?= $obat[0]['status'] == 'Aktif' ? 'checked' : '' ?>> Aktif
                         </label>
                       </div>
                     </div>
                     <div class="col-sm-5">
                       <div class="form-radio">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input <?= form_error('status') ? 'is-invalid' : '' ?>" name="status" id="status" value="Non Aktif"> Non Aktif
+                          <input type="radio" class="form-check-input <?= form_error('status') ? 'is-invalid' : '' ?>" name="status" id="status" value="Non Aktif"  <?= $obat[0]['status'] == 'Non Aktif' ? 'checked' : '' ?>> Non Aktif
                         </label>
                       </div>
                     </div>
@@ -100,6 +108,7 @@
                     <?= form_error('status') ?>
                   </div>
                 </div>
+                <div class="col-6 mb-3"></div>
                 <div class="col-6">
                   <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Simpan</button>
                   <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-refresh"></i> Reset</button>
