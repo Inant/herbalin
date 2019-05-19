@@ -262,15 +262,15 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/forms/basic_elements.html">
+            <a class="nav-link" href="<?= base_url(). 'pasien' ?>">
               <i class="menu-icon mdi mdi-backup-restore"></i>
-              <span class="menu-title">Chart</span>
+              <span class="menu-title">Pasien</span>
             </a>
           </li>
           <li class="nav-item">
-          <a href="<?= base_url().'kategori' ?>" class="nav-link">
+          <a href="<?= base_url().'diagnosa' ?>" class="nav-link">
               <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">kategori</span>
+              <span class="menu-title">Diagnosa</span>
             </a>
           </li>
           <li class="nav-item">
