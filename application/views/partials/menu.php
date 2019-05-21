@@ -274,9 +274,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/tables/basic-table.html">
+            <a class="nav-link" href="<?= base_url(). 'pelayanan' ?>">
               <i class="menu-icon mdi mdi-table"></i>
-              <span class="menu-title">Tables</span>
+              <span class="menu-title">Pelayanan</span>
             </a>
           </li>
           <li class="nav-item">
