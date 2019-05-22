@@ -263,19 +263,19 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url(). 'pasien' ?>">
-              <i class="menu-icon mdi mdi-backup-restore"></i>
+              <i class="menu-icon mdi mdi-wheelchair-accessibility"></i>
               <span class="menu-title">Pasien</span>
             </a>
           </li>
           <li class="nav-item">
           <a href="<?= base_url().'diagnosa' ?>" class="nav-link">
-              <i class="menu-icon mdi mdi-chart-line"></i>
+              <i class="menu-icon mdi mdi-heart-pulse"></i>
               <span class="menu-title">Diagnosa</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url(). 'pelayanan' ?>">
-              <i class="menu-icon mdi mdi-table"></i>
+              <i class="menu-icon mdi mdi-stethoscope"></i>
               <span class="menu-title">Pelayanan</span>
             </a>
           </li>
