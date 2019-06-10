@@ -16,8 +16,9 @@
   <link rel="stylesheet" href="<?= base_url().'assets/vendors/icheck/skins/all.css'?>">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
+  <link href="<?php echo base_url().'assets/vendors/select2-develop/dist/css/select2.min.css'?>" rel="stylesheet">
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" /> -->
   <link rel="stylesheet" href="<?= base_url().'assets/css/style.css'?>">
-  <link href="<?= base_url().'assets/vendors/select2-develop/dist/css/select2.min.css'?>" rel="stylesheet">
   <link rel="stylesheet" href="<?= base_url().'assets/css/custom.css'?>">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= base_url().'assets/images/favicon.png'?>" />
@@ -166,7 +167,10 @@
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">Hello, <?= $this->session->userdata('nama') ?></span>
-              <img class="img-xs rounded-circle" src="<?= base_url(). 'upload/fotouser/'.$this->session->userdata('foto') ?>" alt="Profile image">
+              <?php 
+              $foto = $this->MainModel->getData('foto', 'user', '', ['username' => $this->session->userdata('username')], '');
+              ?>
+              <img class="img-xs rounded-circle" src="<?= base_url(). 'upload/fotouser/'.$foto[0]['foto'] ?>" alt="Profile image">
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <a class="dropdown-item p-0">
@@ -211,7 +215,7 @@
             <div class="nav-link">
               <div class="user-wrapper">
                 <div class="profile-image">
-                  <img src="<?= base_url().'upload/fotouser/'.$this->session->userdata('foto') ?>" alt="profile image">
+                  <img src="<?= base_url().'upload/fotouser/'.$foto[0]['foto'] ?>" alt="profile image">
                 </div>
                 <div class="text-wrapper">
                   <p class="profile-name"><?= $this->session->userdata('nama'); ?></p>
@@ -280,9 +284,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/icons/font-awesome.html">
-              <i class="menu-icon mdi mdi-sticker"></i>
-              <span class="menu-title">Icons</span>
+            <a class="nav-link" href="<?= base_url().'antrian' ?>">
+              <i class="menu-icon mdi mdi-account-multiple-plus"></i>
+              <span class="menu-title">Antrian</span>
             </a>
           </li>
           <li class="nav-item">

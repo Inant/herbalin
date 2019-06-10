@@ -26,12 +26,14 @@
   <script src="<?= base_url().'assets/js/off-canvas.js' ?>"></script>
   <script src="<?= base_url().'assets/js/misc.js' ?>"></script>
 
-  <script src="<?= base_url().'assets/vendors/select2-develop/dist/js/select2.min.js' ?>"></script>
+  <script src="<?php  echo base_url().'assets/vendors/select2-develop/dist/js/select2.min.js' ?>"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script> -->
   <!-- endinject -->
-  <script src="<?= base_url().'assets/js/custom.js' ?>"></script>
+  <!-- C:\xampp\htdocs\herbalin\assets/vendors/select2-develop/dist/js/select2.min.js -->
 
   <!-- endinject -->
   <!-- Custom js for this page-->
+  <script src="<?= base_url().'assets/js/custom.js' ?>"></script>
   <!-- End custom js for this page-->
 </body>
 

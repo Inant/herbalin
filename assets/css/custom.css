@@ -2,9 +2,9 @@
     position: fixed;
     bottom: 0;
 } */
-select.form-control{
+/* select.form-control{
     height: calc(2.25rem + 2px);
-}
+} */
 textarea{
     height: calc(2.25rem + 2px);
 }
@@ -14,3 +14,23 @@ label{
 .form-check-label{
     font-size: 0.75rem;
 }
+
+.selectTwo-container--default .selectTwo-selection--single .selectTwo-selection__rendered{
+    color: #6e707e !important;    
+    padding : .375rem .75rem;
+    line-height: 1.5;
+}
+.selectTwo-container--default .selectTwo-selection--single{
+    border : 1px solid #d1d3e2;
+}
+.selectTwo-container .selectTwo-selection--single{
+    height: calc(1.5em + .75rem + 2px);
+}
+
+.selectTwo {
+    min-height: 150px;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+
+  
