@@ -14,9 +14,9 @@ class Antrian extends CI_Controller
     public function index()
     {
         date_default_timezone_set('Asia/Jakarta');
-        $time = date('d-m-Y');
+        $time = date('Y-m-d');
         $title = array('title' => 'Antrian');
-        $data['antrian'] = $this->MainModel->getData('*', 'antrian', '', ['waktu' => $time], '');
+        $data['antrian'] = $this->MainModel->getData('antrian.*, pasien.nama, pasien.gender, pasien.alamat, pasien.tgl_lahir, YEAR(CURDATE()) - YEAR(tgl_lahir) as usia', 'antrian', ['pasien', 'antrian.id_pasien = pasien.id_pasien'], "waktu BETWEEN '$time 00:00:00' AND '$time 23:59:59' AND antrian.status = 'Mengantri' ", '');
         $this->load->view('partials/menu', $title);
         $this->load->view('antrian/list', $data);
         $this->load->view('partials/footer');
@@ -53,10 +53,20 @@ class Antrian extends CI_Controller
 
     public function create()
     {
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d');
+        $waktu = date('Y-m-d H:i:s');
         $title = array('title' => 'Tambah Antrian');
 
         $data['pasien'] = $this->MainModel->getData('id_pasien, nama', 'pasien', '', '', '');
-        
+        $nomor = $this->db->query("SELECT MAX(nomor) +1 AS nomor FROM antrian WHERE waktu BETWEEN '$date 00:00:00' AND '$date 23:59:59'")->result_array();
+
+        if ($nomor[0]['nomor'] == 0) {
+            $nomor[0]['nomor'] += 1;
+        }
+
+        $data['nomor'] = $nomor[0]['nomor'];
+
         $validation = $this->form_validation;
         $validation->set_message(array(
             'required' => 'Tidak boleh kosong.',
@@ -69,6 +79,7 @@ class Antrian extends CI_Controller
                 'waktu' => $this->input->post('waktu'),
                 'keluhan' => $this->input->post('keluhan'),
                 'nomor' => $this->input->post('nomor'),
+                'waktu' => $waktu
             );
 
             // echo "<pre>";
@@ -92,39 +103,24 @@ class Antrian extends CI_Controller
     public function edit($id = null)
     {
         if (!isset($id)) {
-            redirect(base_url(). 'user');
+            redirect(base_url(). 'antrian');
         }
-
+        $data['pasien'] = $this->MainModel->getData('id_pasien, nama', 'pasien', '', '', '');
         $validation = $this->form_validation;
         $validation = $validation->set_message(array(
             'required' => 'Tidak boleh kosong.',
-            'min_length' => 'Minimal {param} karakter',
-            'max_length' => 'Maksimal {param} karakter',
         ));
 
         $validation->set_rules($this->edit_rules());
 
         if ($validation->run()) {
 
-            $this->user = array(
-                'nama' => $this->input->post('nama'),
-                'tgl_lahir' => $this->input->post('tgl_lahir'),
-                'gender' => $this->input->post('gender'),
-                'agama' => $this->input->post('agama'),
-                'alamat' => $this->input->post('alamat'),
-                'no_hp' => $this->input->post('no_hp'),
-                'username' => $this->input->post('username'),
-                'level' => $this->input->post('level'),
-                'status' => $this->input->post('status'),
+            $this->data = array(
+                'id_pasien' => $this->input->post('id_pasien'),
+                'keluhan' => $this->input->post('keluhan'),
             );
 
-            if (!empty($_FILES['foto']['name'])) {
-                $this->user['foto'] = $this->uploadFoto();
-            } else {
-                $this->user['foto'] = $this->input->post('old_foto');
-            }
-
-            $this->MainModel->update('user', $this->user, ['id_user' => $id]);
+            $this->MainModel->update('antrian', $this->data, ['id_antrian' => $id]);
             $this->session->set_flashdata('success', 'Berhasil diperbarui');
             // echo "<pre>";
             // print_r ($this->user);
@@ -132,14 +128,14 @@ class Antrian extends CI_Controller
             
         }
 
-        $data['user'] = $this->MainModel->getData('*', 'user', '', ['id_user' => $id], '');
-        if (!$data['user']) {
+        $data['antrian'] = $this->MainModel->getData('antrian.*, pasien.nama, pasien.alamat, pasien.tgl_lahir', 'antrian', ['pasien', 'antrian.id_pasien = pasien.id_pasien'], ['id_antrian' => $id], '');
+        if (!$data['antrian']) {
             show_404();
         }
 
         $title['title'] = 'Edit User';
         $this->load->view('partials/menu',$title);
-        $this->load->view('user/edit', $data);
+        $this->load->view('antrian/edit', $data);
         $this->load->view('partials/footer');
         
     }

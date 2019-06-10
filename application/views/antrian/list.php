@@ -56,22 +56,23 @@
                             </thead>
                             <tbody>
                             <?php
-                            $no = 0;
+                            // $no = 0;
                                 foreach ($antrian as $key) {
-                                    $no++;
-                                    $statusClass = $key['status'] == 'Aktif' ? 'badge badge-success' : 'badge badge-danger'; 
+                                    // $no++;
+                                    $statusClass = $key['status'] == 'Mengantri' ? 'badge badge-success' : 'badge badge-danger';
+                                    $waktu = date('d-m-Y H:i:s', strtotime($key['waktu']));
                             ?>
                                 <tr>
-                                    <td><?= $no ?></td>
+                                    <td><?= $key['nomor'] ?></td>
                                     <td><?= $key['nama'] ?></td>
-                                    <td><?= date('d-m-Y', strtotime($key['tgl_lahir'])) ?></td>
+                                    <td><?= $key['usia'].' tahun' ?></td>
                                     <td><?= $key['gender'] ?></td>
                                     <td><?= $key['alamat'] ?></td>
-                                    <td><?= $key['waktu'] ?></td>
+                                    <td><?= $waktu ?></td>
                                     <td><?= $key['keluhan'] ?></td>
                                     <td><span class="<?= $statusClass ?>"><?= $key['status'] ?></span></td>
                                     <td>
-                                        <a href="<?= base_url(). 'antrian/edit/'.$key['id_user'] ?>">
+                                        <a href="<?= base_url(). 'antrian/edit/'.$key['id_antrian'] ?>">
                                             <button class="btn btn-primary btn-sm"> Edit </button>
                                         </a>
                                     </td>
