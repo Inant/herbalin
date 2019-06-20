@@ -37,9 +37,9 @@ class Login extends CI_Controller
             // echo "</pre>";
 
             $user = array(
+                'id_user' => $cek['id_user'],
                 'nama' => $cek['nama'],
                 'username' => $cek['username'],
-                // 'foto' => $cek['foto'],
                 'level' => $cek['level'],
                 'haslogin' => 'true'
             );

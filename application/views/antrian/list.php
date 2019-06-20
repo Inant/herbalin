@@ -1,12 +1,5 @@
 <div class="content-wrapper">
     <div class="row">
-        <?php
-            
-            // echo "<pre>";
-            // print_r ($user);
-            // echo "</pre>";
-            
-        ?>
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -72,9 +65,14 @@
                                     <td><?= $key['keluhan'] ?></td>
                                     <td><span class="<?= $statusClass ?>"><?= $key['status'] ?></span></td>
                                     <td>
-                                        <a href="<?= base_url(). 'antrian/edit/'.$key['id_antrian'] ?>">
+                                        <!-- <a href="<?php // base_url(). 'antrian/edit/'.$key['id_antrian'] ?>">
                                             <button class="btn btn-primary btn-sm"> Edit </button>
-                                        </a>
+                                        </a> -->
+                                        <?= $this->session->userdata('level') == 'Perawat' ? "<a href=".base_url()."pemeriksaan/create/$key[id_antrian]/$key[id_pasien]".">
+                                            <button class='btn btn-info btn-sm'> Periksa </button>
+                                        </a>" : "<a href='antrian/edit/$key[id_antrian]'>
+                                        <button class='btn btn-primary btn-sm'> Edit </button>
+                                    </a>" ?>
                                     </td>
                                 </tr>
                             <?php
