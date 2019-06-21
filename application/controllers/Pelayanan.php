@@ -107,7 +107,7 @@ class Pelayanan extends CI_Controller
             );
 
             $this->MainModel->update('pelayanan', $this->pelayanan, ['id_pelayanan' => $id]);
-            $this->session->set_flashdata('succes', 'Berhasil diperbarui');
+            $this->session->set_flashdata('success', 'Berhasil diperbarui');
         }
 
         $data['pelayanan'] = $this->MainModel->getData('*', 'pelayanan', '', ['id_pelayanan' => $id], '');

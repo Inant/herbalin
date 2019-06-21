@@ -12,7 +12,6 @@ $(document).ready(function() {
       success: function (response) {
         $('#alamat').val(response[0].alamat);
         $('#tgl_lahir').val(response[0].tgl_lahir);
-        // console.log(response);
       }
     });
   });
@@ -35,45 +34,16 @@ $(document).ready(function() {
       url: base_url + 'pemeriksaan/getPelayanan',
       dataType: "json",
       success: function (response) {
-        // console.log(response);
         $.each(response, function (index, value) { 
           // console.log(value.id_pelayanan + " " + value.nama);
           $('#id_pelayanan'+  rowTindakan).append(`
             <option value=`+value.id_pelayanan+`>`+value.nama+`</option>
           `);
-          // console.log(valueOfElement.nama);
         });
       }
     });
 
     $('.selectDua').select2();
-
-    
-    // let a = "<?php echo 'asem' ?>";
-    // console.log("<?php echo 'asem' ?>");
-    // $('#tindakan').append(`
-    // <div class="col-10 mb-2">
-    //   <select name="id_pelayanan[]" id="id_pelayanan`+rowTindakan+`" class="form-control selectTwo">
-    //     <option value="">-- Pilih Tindakan --</option>
-    //   </select>
-    // </div>
-    //   <div class="col-1">
-    //     <button id="addTindakan" type="button" class="btn btn-info btn-sm" > &nbsp;<i class="fa fa-plus-circle"></i></button>
-    //   </div>`
-    // );
-    // this.preventDefault();
-    // $('#id_pelayanan'+rowTindakan).addClass('selectTwo');
-    // $(`
-    //   <div class="col-10 mb-2">
-    //     <select name="id_pelayanan[]" id="id_pelayanan`+rowTindakan+`" class="form-control selectDua">
-    //       <option value="">-- Pilih Tindakan --</option>` + "<?php foreach ($pelayanan as $key => $value) {?>"+`<option value="`+"<?php echo $value['id_pelayanan'] ?>"+`"> `+" <?php echo $value['nama'] ?>" + `</option>`+"<?php}?>"+`
-    //     </select>
-    //   </div>
-    //     <div class="col-1">
-    //       <button id="addTindakan" type="button" class="btn btn-info btn-sm" > &nbsp;<i class="fa fa-plus-circle"></i></button>
-    //   </div>`
-    // ).appendTo('#tindakan');
-    
   });
 
   $(document).on('click', '.removeTindakan', function () {
@@ -200,6 +170,7 @@ $(document).ready(function() {
     $('#obatBtn'+btn_id+'').remove();
   });
 
+  var stockObat = 0;
   $('#id_obat').change(function () {
     $.ajax({
       type: "POST",
@@ -208,8 +179,23 @@ $(document).ready(function() {
       success: function (response) {
         // console.log( response[0].satuan);
         $('#satuan').val(response[0].satuan);
+        stockObat = parseInt(response[0].stock, 10);
+        console.log(stockObat);
       }
     });
   });
 
+  // function cekStock(el) {
+  //   alert('Jumlah obat melebihi sisa stock obat.')
+  //   el.preventDefault();
+  // }
+  $(document).on("submit", "form", function(e){
+    var jumlah = parseInt($('#jumlah').val(), 10);
+    if (jumlah > stockObat) {
+      alert('Jumlah obat melebihi sisa stock obat.')
+      e.preventDefault();
+    }else{
+      $(e).unbind('submit');
+    }
+  });
 });

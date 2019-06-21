@@ -41,9 +41,11 @@ class Pemeriksaan extends CI_Controller
         ];
     }
 
-    public function create($id = null, $id_pasien = null)
+    public function create($id_antrian = null, $id_pasien = null)
     {
-        if (!isset($id)) {
+        date_default_timezone_set('Asia/Jakarta');
+        $date = date('Y-m-d');
+        if (!isset($id_antrian)) {
           redirect(base_url(). 'antrian');
         }
         if (!isset($id_pasien)) {
@@ -59,19 +61,19 @@ class Pemeriksaan extends CI_Controller
         $validation->set_rules($this->rules());
 
         $this->status = array('status' => 'Diperiksa');
-        $this->MainModel->update('antrian', $this->status, ['id_antrian' => $id]);
+        $this->MainModel->update('antrian', $this->status, ['id_antrian' => $id_antrian]);
 
-        $data['pemeriksaan'] = $this->MainModel->getData('p.nama, YEAR(CURDATE()) - YEAR(p.tgl_lahir) as usia, p.gender, p.alamat, a.*', 'antrian a', ['pasien p', 'p.id_pasien = a.id_pasien'], ['id_antrian' => $id], '');
+        $data['pemeriksaan'] = $this->MainModel->getData('p.nama, YEAR(CURDATE()) - YEAR(p.tgl_lahir) as usia, p.gender, p.alamat, a.*', 'antrian a', ['pasien p', 'p.id_pasien = a.id_pasien'], ['id_antrian' => $id_antrian], '');
 
         $data['jmlKunjungan'] = $this->MainModel->getData('COUNT(id_pasien) as jmlKunjungan', 'antrian', '', ['id_pasien' => $id_pasien], '');
         
         $data['diagnosa'] = $this->MainModel->getData('*', 'diagnosa', '', '', ['nama', 'ASC']);
         $data['pelayanan'] = $this->MainModel->getData('*', 'pelayanan', '', '', ['nama', 'ASC']);
-        $data['obat'] = $this->MainModel->getData('*', 'obat', '', '', ['nama', 'ASC']);
+        $data['obat'] = $this->MainModel->getData('*', 'obat', '', "stock > 0 AND tgl_kadaluarsa > '$date'", ['nama', 'ASC']);
 
         if ($validation->run()) {
             $this->pemeriksaan = array(
-                'id_antrian' => $id,
+                'id_antrian' => $id_antrian,
                 'id_user' => $this->session->userdata('id_user'),
                 'pemeriksaan' => $this->input->post('pemeriksaan'),
                 'tensi' => $this->input->post('tensi1').'/'.$this->input->post('tensi2'),
@@ -122,7 +124,10 @@ class Pemeriksaan extends CI_Controller
                 'jumlah' => $_POST['jumlah'][$key],
                 'subtotal' => $getHarga[0]['harga_jual'],
               );
+              $jumlah = $_POST['jumlah'][$key];
+              $id = $_POST['id_obat'][$key];
               $this->MainModel->insert('detail_resep', $this->obat);
+              $this->db->query("UPDATE obat SET stock = stock - '$jumlah' WHERE id_obat = '$id'");
             }
 
             $getHargaResep = $this->MainModel->getData('SUM(subtotal) as subtotal', 'detail_resep', '' , ['id_resep' => $id_resep[0]['id']], '');
@@ -131,8 +136,10 @@ class Pemeriksaan extends CI_Controller
             );
             $this->MainModel->update('resep', $this->hargaResep, ['id_resep' => $id_resep[0]['id']]);
 
-            $this->status = array('status' => 'Menunggu Obat');
-            $this->MainModel->update('antrian', $this->status, ['id_antrian' => $id]);
+            // $this->status = array('status' => 'Menunggu Obat');
+            // $this->MainModel->update('antrian', $this->status, ['id_antrian' => $id]);
+            $this->newStatus = array('status' => 'Menunggu Obat');
+            $this->MainModel->update('antrian', $this->newStatus, ['id_antrian' => $id_antrian]);
             
             $this->session->set_flashdata('success', 'Pasien telah diperiksa');
             redirect(base_url(). 'antrian/');
@@ -212,14 +219,16 @@ class Pemeriksaan extends CI_Controller
 
     public function getObat()
     {
-      $obat = $this->MainModel->getData('o.id_obat, o.nama, s.satuan', 'obat o', ['satuan_obat s', 'o.id_satuan = s.id_satuan'], 'id_obat IS NOT NULL', ['nama', 'ASC']);
+      date_default_timezone_set('Asia/Jakarta');
+      $date = date('Y-m-d');
+      $obat = $this->MainModel->getData('o.id_obat, o.nama, s.satuan', 'obat o', ['satuan_obat s', 'o.id_satuan = s.id_satuan'], "id_obat IS NOT NULL AND stock > 0 AND tgl_kadaluarsa > '$date'", ['nama', 'ASC']);
       print(json_encode($obat));
       return json_encode($obat);
     }
 
     public function getSatuanObat($id=null)
     {
-      $satuan = $this->MainModel->getData('satuan', 'satuan_obat s', ['obat o', 'o.id_satuan = s.id_satuan'], ['o.id_obat' => $id], '');
+      $satuan = $this->MainModel->getData('o.stock,s.satuan', 'satuan_obat s', ['obat o', 'o.id_satuan = s.id_satuan'], ['o.id_obat' => $id], '');
       print(json_encode($satuan));
       return json_encode($satuan);
     }

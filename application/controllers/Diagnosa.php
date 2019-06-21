@@ -39,7 +39,7 @@ class Diagnosa extends CI_controller
 
     public function create()
     {
-        $title = array('title' => 'Tambah Satuan Obat');
+        $title = array('title' => 'Tambah Diagnosa');
         $validation = $this->form_validation;
         $validation->set_message(array(
             'required' => 'Tidak boleh kosong.',
@@ -54,7 +54,7 @@ class Diagnosa extends CI_controller
             );
 
             $this->MainModel->insert('diagnosa', $this->data);
-            $this->session->set_flashdata('succsess', 'Berhasil disimpan');
+            $this->session->set_flashdata('success', 'Berhasil disimpan');
             redirect(base_url(). 'diagnosa/create');
         }
         $this->load->view('partials/menu', $title);

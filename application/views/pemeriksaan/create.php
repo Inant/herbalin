@@ -23,7 +23,7 @@
               <?php
               }
               ?>
-            <form action="<?= base_url(). 'pemeriksaan/create/'.$pemeriksaan[0]['id_antrian'].'/'.$pemeriksaan[0]['id_pasien'] ?>" enctype="multipart/form-data" method="POST">
+            <form id="form" action="<?= base_url(). 'pemeriksaan/create/'.$pemeriksaan[0]['id_antrian'].'/'.$pemeriksaan[0]['id_pasien'] ?>" enctype="multipart/form-data" method="POST">
               <div class="row">
                 <div class="col-4 mb-2">
                   <label for="">Nomor Antrian</label>
@@ -192,7 +192,7 @@
               </div>
 
                 <div class="col-6">
-                  <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Simpan</button>
+                  <button type="submit" id="submit" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Simpan</button>
                   <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-refresh"></i> Reset</button>
                 </div>
             </form>

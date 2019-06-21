@@ -295,6 +295,12 @@
               <span class="menu-title">Antrian Resep</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url().'pembayaran' ?>">
+              <i class="menu-icon mdi mdi-cash-usd"></i>
+              <span class="menu-title">Antrian Pembayaran</span>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- partial -->

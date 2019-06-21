@@ -37,7 +37,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama</th>
+                                    <th>Nama Pasien</th>
                                     <th>Usia</th>
                                     <th>Gender</th>
                                     <th>Alamat</th>
