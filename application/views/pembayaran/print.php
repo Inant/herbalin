@@ -140,12 +140,17 @@
     <div class="col-8 offset-2">
       <table width="100%">
         <tr>
-          <td><p class="keterangan"><b>Grand Total : <?= $totalPelayanan + $totalObat ?></b></p></td>
-          <td><p class="keterangan"><b>Total Bayar : <?= $pembayaran[0]['total_bayar'] ?></b></p></td>
-          <td><p class="keterangan"><b>Kembalian : <?= $pembayaran[0]['kembalian'] ?></b></p></td>
+          <td><p class="keterangan"><b>Grand Total : &nbsp; <?= number_format($totalPelayanan + $totalObat, 2, ',', '.') ?></b></p></td>
+          <td><p class="keterangan"><b>Total Bayar :  &nbsp; Rp.  <?= number_format($pembayaran[0]['total_bayar'], 2, ',', '.')?></b></p></td>
+          <td><p class="keterangan"><b>Kembalian :  &nbsp; Rp.  <?= number_format ($pembayaran[0]['kembalian'], 2, ',', '.')?></b></p></td>
         </tr>
       </table>
     </div>
   </div>
 </body>
+<script>
+  window.print();
+  window.alert('Pembayaran berhasil');
+  window.location.href="<?= base_url().'pembayaran'?>";
+</script>
 </html>

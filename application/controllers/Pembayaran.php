@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowes');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Pembayaran extends CI_Controller
 {
@@ -9,6 +9,7 @@ class Pembayaran extends CI_Controller
             $this->session->set_flashdata('error', 'Anda harus login dulu !');
             redirect(base_url('login'));
         }
+        // $this->load->library('MainLib');
     }
 
     public function index()
