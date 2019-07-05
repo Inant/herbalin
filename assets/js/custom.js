@@ -198,4 +198,22 @@ $(document).ready(function() {
       $(e).unbind('submit');
     }
   });
+
+  $('#bayar').keyup(function (e) { 
+    let total = parseInt($('#total').val());
+    let bayar = parseInt($('#bayar').val());
+    let kembalian = bayar - total;
+    $('#kembalian').val(kembalian);
+  });
+
+  $(document).on("submit", "#formBayar", function (e) {
+    if (parseInt($('#total').val()) > parseInt($('#bayar').val())) {
+      alert('Total Bayar tidak boleh kurang dari grand total.');
+      e.preventDefault();
+    }
+    else {
+      $(e).unbind('submit');
+    }
+  });
+
 });
