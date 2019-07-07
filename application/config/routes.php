@@ -61,3 +61,5 @@ $route['laporan-kunjungan/perbulan'] = 'LaporanKunjungan/perbulan';
 $route['laporan-pembayaran/all'] = 'LaporanPembayaran';
 $route['laporan-pembayaran/perhari'] = 'LaporanPembayaran/perhari';
 $route['laporan-pembayaran/perbulan'] = 'LaporanPembayaran/perbulan';
+//laporan diagnosa
+$route['diagnosa/laporan-diagnosa'] = 'Diagnosa/laporanDiagnosa';

@@ -265,6 +265,9 @@
                 <li class="nav-item">
                 <a href="<?= base_url().'obat/kadaluarsa' ?>"class="nav-link">Obat Kadaluarsa</a>
                 </li>
+                <li class="nav-item">
+                <a href="<?= base_url().'obat/keluar' ?>"class="nav-link">Obat Keluar</a>
+                </li>
               </ul>
             </div>
           </li>
@@ -274,11 +277,28 @@
               <span class="menu-title">Pasien</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
           <a href="<?= base_url().'diagnosa' ?>" class="nav-link">
               <i class="menu-icon mdi mdi-heart-pulse"></i>
               <span class="menu-title">Diagnosa</span>
             </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#diagnosa" aria-expanded="false" aria-controls="diagnosa">
+              <i class="menu-icon mdi mdi-heart-pulse"></i>
+              <span class="menu-title">Diagnosa</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="diagnosa">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                <a href="<?= base_url().'diagnosa' ?>"class="nav-link">Diagnosa</a>
+                </li>
+                <li class="nav-item">
+                <a href="<?= base_url().'diagnosa/laporan-diagnosa' ?>"class="nav-link">Laporan Diagnosa</a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url(). 'pelayanan' ?>">
