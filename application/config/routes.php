@@ -53,3 +53,7 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'welcome/index';
+//laporan kunjungan
+$route['laporan-kunjungan/all'] = 'LaporanKunjungan';
+$route['laporan-kunjungan/perhari'] = 'LaporanKunjungan/perhari';
+$route['laporan-kunjungan/perbulan'] = 'LaporanKunjungan/perbulan';

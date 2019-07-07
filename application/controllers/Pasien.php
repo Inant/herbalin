@@ -216,5 +216,20 @@ class Pasien extends CI_Controller
         
     }
 
+    public function riwayat($id = null)
+    {
+        if ($id == null) {
+            rediredt(base_url(). 'pasien');
+        }
+        $title['title'] = 'Riwayat Pasien';
+        $data['pasien'] = $this->MainModel->getData('pasien.*, YEAR(CURDATE()) - YEAR(tgl_lahir) as usia', 'pasien', '', ['id_pasien' => $id], '');
+
+        $data['history'] = $this->MainModel->getData('a.id_antrian, a.waktu, a.keluhan', 'antrian a', '', ['id_pasien' => $id], ['a.id_antrian', 'DESC']);
+
+        $this->load->view('partials/menu',$title);
+        $this->load->view('pasien/riwayat', $data);
+        $this->load->view('partials/footer');
+    }
+
 }
 

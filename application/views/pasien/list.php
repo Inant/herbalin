@@ -74,6 +74,9 @@
                                         <a href="<?= base_url(). 'pasien/edit/'.$key['id_pasien'] ?>">
                                             <button class="btn btn-primary btn-sm"> Edit </button>
                                         </a>
+                                        <a href="<?= base_url(). 'pasien/riwayat/'.$key['id_pasien'] ?>">
+                                            <button class="btn btn-info btn-sm"> Riwayat </button>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php

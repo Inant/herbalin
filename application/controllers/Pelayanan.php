@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowes');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Pelayanan extends CI_Controller
 {

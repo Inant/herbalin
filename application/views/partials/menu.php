@@ -301,6 +301,26 @@
               <span class="menu-title">Antrian Pembayaran</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#kunjungan" aria-expanded="false" aria-controls="kunjungan">
+              <i class="menu-icon fa fa-file-pdf-o"></i>
+              <span class="menu-title">Laporan Kunjungan</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="kunjungan">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                <a href="<?= base_url().'laporan-kunjungan/all' ?>"class="nav-link">Semua Kunjungan</a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= base_url().'laporan-kunjungan/perhari' ?>"class="nav-link">Kunjungan Perhari</a>
+                </li>
+                <li class="nav-item">
+                <a href="<?= base_url().'laporan-kunjungan/perbulan' ?>"class="nav-link">Kunjungan Perbulan</a>
+                </li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </nav>
       <!-- partial -->
