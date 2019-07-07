@@ -178,4 +178,15 @@
         $this->load->view('obat/edit', $data);
         $this->load->view('partials/footer');
     }
+
+    public function kadaluarsa()
+    {
+        $title= array('title' => 'Obat Kadaluarsa');
+        
+        $data['obat_kadaluarsa'] = $this->MainModel->getData('*', 'getobatkadaluarsa', '', '', ['nama', 'ASC']);
+        // $data['diagnosa'] = $this->MainModel->getData('*', 'diagnosa', '', '', ['nama', 'ASC']);
+        $this->load->view('partials/menu', $title);
+        $this->load->view('obat/obat-kadaluarsa', $data);
+        $this->load->view('partials/footer');
+    }
  }

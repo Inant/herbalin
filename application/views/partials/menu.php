@@ -262,6 +262,9 @@
                 <li class="nav-item">
                 <a href="<?= base_url().'obat' ?>"class="nav-link">Obat</a>
                 </li>
+                <li class="nav-item">
+                <a href="<?= base_url().'obat/kadaluarsa' ?>"class="nav-link">Obat Kadaluarsa</a>
+                </li>
               </ul>
             </div>
           </li>

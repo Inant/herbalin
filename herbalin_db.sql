@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jul 2019 pada 18.40
+-- Waktu pembuatan: 07 Jul 2019 pada 19.29
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -159,6 +159,60 @@ CREATE TABLE `getallpembayaran` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in struktur untuk tampilan `getlaporandiagnosa`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `getlaporandiagnosa` (
+`id_diagnosa` tinyint(3)
+,`nama` varchar(30)
+,`status` enum('Aktif','Non Aktif')
+,`jumlah` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `getobatkadaluarsa`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `getobatkadaluarsa` (
+`id_obat` int(7)
+,`nama` varchar(50)
+,`id_kategori` tinyint(3)
+,`id_satuan` tinyint(4)
+,`harga_jual` int(7)
+,`stock` smallint(5)
+,`tgl_kadaluarsa` date
+,`id_user` tinyint(3)
+,`status` enum('Aktif','Non Aktif')
+,`satuan` varchar(30)
+,`kategori` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `getobatkeluar`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `getobatkeluar` (
+`id_obat` int(7)
+,`nama` varchar(50)
+,`id_kategori` tinyint(3)
+,`id_satuan` tinyint(4)
+,`harga_jual` int(7)
+,`stock` smallint(5)
+,`tgl_kadaluarsa` date
+,`id_user` tinyint(3)
+,`status` enum('Aktif','Non Aktif')
+,`kategori` varchar(30)
+,`satuan` varchar(30)
+,`jml_keluar` decimal(25,0)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `kategori_obat`
 --
 
@@ -207,7 +261,7 @@ CREATE TABLE `obat` (
 INSERT INTO `obat` (`id_obat`, `nama`, `id_kategori`, `id_satuan`, `harga_jual`, `stock`, `tgl_kadaluarsa`, `id_user`, `status`) VALUES
 (1, 'Acarbose', 5, 23, 6000, 7, '2023-08-04', 1, 'Aktif'),
 (2, 'Paracetamol', 2, 24, 2000, 5, '2020-01-11', 1, 'Aktif'),
-(3, 'bodrex', 8, 24, 1000, 6, '2021-02-05', 1, 'Aktif');
+(3, 'bodrex', 8, 24, 1000, 6, '2020-07-05', 1, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -439,6 +493,33 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `getallpembayaran`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `getallpembayaran`  AS  select `pb`.`waktu` AS `waktu`,`pb`.`grand_total` AS `grand_total`,`pb`.`total_bayar` AS `total_bayar`,`pb`.`kembalian` AS `kembalian`,`p`.`nama` AS `nama` from ((`pembayaran` `pb` join `antrian` `a` on((`pb`.`id_antrian` = `a`.`id_antrian`))) join `pasien` `p` on((`p`.`id_pasien` = `a`.`id_pasien`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `getlaporandiagnosa`
+--
+DROP TABLE IF EXISTS `getlaporandiagnosa`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `getlaporandiagnosa`  AS  select `d`.`id_diagnosa` AS `id_diagnosa`,`d`.`nama` AS `nama`,`d`.`status` AS `status`,count(`dt`.`id_diagnosa`) AS `jumlah` from (((`diagnosa` `d` join `detail_diagnosa` `dt` on((`d`.`id_diagnosa` = `dt`.`id_diagnosa`))) join `pemeriksaan` `p` on((`p`.`id_pemeriksaan` = `dt`.`id_pemeriksaan`))) join `antrian` `a` on((`a`.`id_antrian` = `p`.`id_antrian`))) group by `dt`.`id_diagnosa` ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `getobatkadaluarsa`
+--
+DROP TABLE IF EXISTS `getobatkadaluarsa`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `getobatkadaluarsa`  AS  select `o`.`id_obat` AS `id_obat`,`o`.`nama` AS `nama`,`o`.`id_kategori` AS `id_kategori`,`o`.`id_satuan` AS `id_satuan`,`o`.`harga_jual` AS `harga_jual`,`o`.`stock` AS `stock`,`o`.`tgl_kadaluarsa` AS `tgl_kadaluarsa`,`o`.`id_user` AS `id_user`,`o`.`status` AS `status`,`s`.`satuan` AS `satuan`,`k`.`kategori` AS `kategori` from ((`obat` `o` join `kategori_obat` `k` on((`k`.`id_kategori` = `o`.`id_kategori`))) join `satuan_obat` `s` on((`o`.`id_satuan` = `s`.`id_satuan`))) where (`o`.`tgl_kadaluarsa` <= curdate()) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `getobatkeluar`
+--
+DROP TABLE IF EXISTS `getobatkeluar`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `getobatkeluar`  AS  select `o`.`id_obat` AS `id_obat`,`o`.`nama` AS `nama`,`o`.`id_kategori` AS `id_kategori`,`o`.`id_satuan` AS `id_satuan`,`o`.`harga_jual` AS `harga_jual`,`o`.`stock` AS `stock`,`o`.`tgl_kadaluarsa` AS `tgl_kadaluarsa`,`o`.`id_user` AS `id_user`,`o`.`status` AS `status`,`k`.`kategori` AS `kategori`,`s`.`satuan` AS `satuan`,sum(`d`.`jumlah`) AS `jml_keluar` from ((((((`obat` `o` join `detail_resep` `d` on((`d`.`id_obat` = `o`.`id_obat`))) join `resep` `r` on((`r`.`id_resep` = `d`.`id_resep`))) join `pemeriksaan` `p` on((`p`.`id_pemeriksaan` = `r`.`id_pemeriksaan`))) join `antrian` `a` on((`a`.`id_antrian` = `p`.`id_antrian`))) join `satuan_obat` `s` on((`s`.`id_satuan` = `o`.`id_satuan`))) join `kategori_obat` `k` on((`k`.`id_kategori` = `o`.`id_kategori`))) group by `d`.`id_obat` ;
 
 --
 -- Indexes for dumped tables
