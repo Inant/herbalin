@@ -189,4 +189,16 @@
         $this->load->view('obat/obat-kadaluarsa', $data);
         $this->load->view('partials/footer');
     }
+
+    public function keluar()
+    {
+        $title= array('title' => 'Obat Keluar');
+        
+        $data['obat_keluar'] = $this->MainModel->getData('*', 'getobatkeluar', '', '', ['nama', 'ASC']);
+        // $data['diagnosa'] = $this->MainModel->getData('*', 'diagnosa', '', '', ['nama', 'ASC']);
+        $this->load->view('partials/menu', $title);
+        $this->load->view('obat/obat-keluar', $data);
+        $this->load->view('partials/footer');
+    }
+
  }

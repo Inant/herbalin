@@ -96,5 +96,16 @@ class Diagnosa extends CI_controller
         $this->load->view('partials/footer');
     }
 
+    public function laporanDiagnosa()
+    {
+        $title= array('title' => 'Laporan Diagnosa');
+        
+        $data['laporandiagnosa'] = $this->MainModel->getData('*', 'getlaporandiagnosa', '', '', ['nama', 'ASC']);
+        // $data['diagnosa'] = $this->MainModel->getData('*', 'diagnosa', '', '', ['nama', 'ASC']);
+        $this->load->view('partials/menu', $title);
+        $this->load->view('diagnosa/laporan-diagnosa', $data);
+        $this->load->view('partials/footer');
+    }
+
 }
     
