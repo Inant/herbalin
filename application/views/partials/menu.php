@@ -321,6 +321,26 @@
               </ul>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#pembayaran" aria-expanded="false" aria-controls="pembayaran">
+              <i class="menu-icon fa fa-file-pdf-o"></i>
+              <span class="menu-title">Laporan Pembayaran</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="pembayaran">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                <a href="<?= base_url().'laporan-pembayaran/all' ?>"class="nav-link">Semua Pembayaran</a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= base_url().'laporan-pembayaran/perhari' ?>"class="nav-link">Pembayaran Perhari</a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?= base_url().'laporan-pembayaran/perbulan' ?>"class="nav-link">Pembayaran Perbulan</a>
+                </li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </nav>
       <!-- partial -->

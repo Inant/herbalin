@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2019 at 06:34 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Waktu pembuatan: 07 Jul 2019 pada 18.40
+-- Versi server: 10.1.37-MariaDB
+-- Versi PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `antrian`
+-- Struktur dari tabel `antrian`
 --
 
 CREATE TABLE `antrian` (
@@ -38,17 +38,19 @@ CREATE TABLE `antrian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `antrian`
+-- Dumping data untuk tabel `antrian`
 --
 
 INSERT INTO `antrian` (`id_antrian`, `id_pasien`, `waktu`, `keluhan`, `nomor`, `status`) VALUES
-(11, 2, '2019-06-19 21:49:30', 'Adem Panas', 1, 'Proses Pembayaran'),
-(12, 3, '2019-06-20 21:21:28', 'pusing', 1, 'Menunggu Obat');
+(16, 9, '2019-06-21 14:39:34', 'Pusing, Penglihatan buram, Mual.', 1, 'Selesai'),
+(23, 1, '2019-06-27 00:47:03', 'Pusing', 1, 'Selesai'),
+(24, 3, '2019-07-03 22:41:05', 'Sakit pinggang', 1, 'Selesai'),
+(25, 1, '2019-07-07 10:02:18', 'Pilek', 1, 'Menunggu Obat');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_diagnosa`
+-- Struktur dari tabel `detail_diagnosa`
 --
 
 CREATE TABLE `detail_diagnosa` (
@@ -58,18 +60,19 @@ CREATE TABLE `detail_diagnosa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_diagnosa`
+-- Dumping data untuk tabel `detail_diagnosa`
 --
 
 INSERT INTO `detail_diagnosa` (`id_detail`, `id_pemeriksaan`, `id_diagnosa`) VALUES
-(7, 5, 1),
-(8, 5, 2),
-(9, 6, 1);
+(12, 26, 5),
+(13, 27, 5),
+(14, 28, 6),
+(15, 29, 6);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_resep`
+-- Struktur dari tabel `detail_resep`
 --
 
 CREATE TABLE `detail_resep` (
@@ -83,18 +86,23 @@ CREATE TABLE `detail_resep` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_resep`
+-- Dumping data untuk tabel `detail_resep`
 --
 
 INSERT INTO `detail_resep` (`id_detail`, `id_resep`, `id_obat`, `dosis1`, `dosis2`, `jumlah`, `subtotal`) VALUES
-(5, 5, 1, 3, 1, 1, 6000),
-(6, 5, 2, 3, 1, 1, 2000),
-(7, 6, 2, 2, 1, 1, 2000);
+(12, 26, 1, 3, 1, 1, 6000),
+(13, 26, 2, 2, 1, 2, 2000),
+(14, 27, 2, 2, 1, 1, 2000),
+(15, 27, 1, 3, 1, 1, 6000),
+(16, 28, 3, 1, 1, 2, 1000),
+(17, 29, 1, 2, 1, 1, 6000),
+(18, 29, 2, 3, 1, 2, 2000),
+(19, 29, 3, 3, 1, 2, 1000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diagnosa`
+-- Struktur dari tabel `diagnosa`
 --
 
 CREATE TABLE `diagnosa` (
@@ -104,17 +112,54 @@ CREATE TABLE `diagnosa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `diagnosa`
+-- Dumping data untuk tabel `diagnosa`
 --
 
 INSERT INTO `diagnosa` (`id_diagnosa`, `nama`, `status`) VALUES
-(1, 'Batuk', 'Aktif'),
-(2, 'pusing', 'Aktif');
+(3, 'Hiperglikemia', 'Aktif'),
+(4, 'Hiperlipidemia', 'Aktif'),
+(5, 'Hipertensi', 'Aktif'),
+(6, 'Artritis', 'Aktif'),
+(7, 'Hiperurisemia', 'Aktif'),
+(8, 'Hepatitis', 'Aktif'),
+(9, 'Dispepsia', 'Aktif'),
+(10, 'Hemorhoid', 'Aktif'),
+(11, 'Obesitas', 'Aktif'),
+(12, 'Tumor/kanker', 'Aktif');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori_obat`
+-- Stand-in struktur untuk tampilan `getallkunjungan`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `getallkunjungan` (
+`waktu` datetime
+,`keluhan` text
+,`nama` varchar(50)
+,`usia` int(5)
+,`gender` enum('Laki-laki','Perempuan')
+,`alamat` text
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `getallpembayaran`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `getallpembayaran` (
+`waktu` datetime
+,`grand_total` int(9)
+,`total_bayar` int(9)
+,`kembalian` int(7)
+,`nama` varchar(50)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kategori_obat`
 --
 
 CREATE TABLE `kategori_obat` (
@@ -124,7 +169,7 @@ CREATE TABLE `kategori_obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kategori_obat`
+-- Dumping data untuk tabel `kategori_obat`
 --
 
 INSERT INTO `kategori_obat` (`id_kategori`, `kategori`, `status`) VALUES
@@ -140,7 +185,7 @@ INSERT INTO `kategori_obat` (`id_kategori`, `kategori`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `obat`
+-- Struktur dari tabel `obat`
 --
 
 CREATE TABLE `obat` (
@@ -156,18 +201,18 @@ CREATE TABLE `obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `obat`
+-- Dumping data untuk tabel `obat`
 --
 
 INSERT INTO `obat` (`id_obat`, `nama`, `id_kategori`, `id_satuan`, `harga_jual`, `stock`, `tgl_kadaluarsa`, `id_user`, `status`) VALUES
-(1, 'Acarbose', 5, 23, 6000, 10, '2023-08-04', 1, 'Aktif'),
-(2, 'Paracetamol', 2, 24, 2000, 10, '2025-09-08', 1, 'Aktif'),
-(3, 'bodrex', 8, 24, 1000, 10, '2019-05-31', 1, 'Aktif');
+(1, 'Acarbose', 5, 23, 6000, 7, '2023-08-04', 1, 'Aktif'),
+(2, 'Paracetamol', 2, 24, 2000, 5, '2020-01-11', 1, 'Aktif'),
+(3, 'bodrex', 8, 24, 1000, 6, '2021-02-05', 1, 'Aktif');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pasien`
+-- Struktur dari tabel `pasien`
 --
 
 CREATE TABLE `pasien` (
@@ -187,18 +232,20 @@ CREATE TABLE `pasien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pasien`
+-- Dumping data untuk tabel `pasien`
 --
 
 INSERT INTO `pasien` (`id_pasien`, `no_identitas`, `nama`, `tmpt_lahir`, `tgl_lahir`, `gender`, `alamat`, `no_hp`, `pendidikan`, `status_perkawinan`, `status`, `username`, `password`) VALUES
 (1, '124324234234', 'Iyek Ali', 'Jember', '1998-08-09', 'Laki-laki', 'Gumuk Mas', '085235711871', 'D4', 'Kawin', 'Aktif', NULL, NULL),
 (2, '111111', 'fatan', 'bondowoso', '2019-05-03', 'Laki-laki', 'mastrip', '08522121232', 'SD', 'Kawin', 'Aktif', NULL, NULL),
-(3, '1231121121212', 'Isa Kurniawan', 'Banyuwangi', '2000-06-14', 'Laki-laki', 'Jl. Mastrip Timur', '085235711872', 'SMA', 'Belum Kawin', 'Aktif', NULL, NULL);
+(3, '1231121121212', 'Isa Kurniawan', 'Banyuwangi', '2000-06-14', 'Laki-laki', 'Jl. Mastrip Timur', '085235711872', 'SMA', 'Belum Kawin', 'Aktif', NULL, NULL),
+(8, '122312232123', 'saya', 'Jember', '2000-03-29', 'Laki-laki', 'Jl. Mastrip 5, Sumbersari, Jember', '085258887156', 'SMA', 'Belum Kawin', 'Aktif', 'nangkabunyok', '$2y$10$NKgA0SfkNKfR6Y1GY8xRHO5PKdeb14cooXlhBNf9TlsheDMiXcdim'),
+(9, '776676767128', 'siska', 'Banyuwangi', '1998-03-14', 'Perempuan', 'Jl. Kaliurang, Sumbersari, Jember', '085258887155', 'SMA', 'Belum Kawin', 'Aktif', 'siska1', '$2y$10$CXjgO7By4F72zMyZtouGYeKdlKyPxaTNJgXPQd3MDy1MO/kGgDtoO');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pelayanan`
+-- Struktur dari tabel `pelayanan`
 --
 
 CREATE TABLE `pelayanan` (
@@ -209,18 +256,23 @@ CREATE TABLE `pelayanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pelayanan`
+-- Dumping data untuk tabel `pelayanan`
 --
 
 INSERT INTO `pelayanan` (`id_pelayanan`, `nama`, `harga`, `status`) VALUES
-(1, 'Suntik', 20000, 'Aktif'),
-(2, 'Akupuntur', 60000, 'Aktif'),
-(3, 'pijet', 100000, 'Aktif');
+(4, 'Acupunture', 50000, 'Aktif'),
+(5, 'Acupressure', 40000, 'Aktif'),
+(6, 'Bekam', 50000, 'Aktif'),
+(7, 'Hipno Terapi', 30000, 'Aktif'),
+(8, 'Cek Gula Darah', 20000, 'Aktif'),
+(9, 'Cek Asam Urat', 15000, 'Aktif'),
+(10, 'Cek Kolesterol', 15000, 'Aktif'),
+(11, 'Rehabilitasi Strok', 50000, 'Aktif');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembayaran`
+-- Struktur dari tabel `pembayaran`
 --
 
 CREATE TABLE `pembayaran` (
@@ -233,10 +285,19 @@ CREATE TABLE `pembayaran` (
   `id_user` tinyint(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_antrian`, `waktu`, `grand_total`, `total_bayar`, `kembalian`, `id_user`) VALUES
+(1, 24, '2019-07-03 18:54:38', 41000, 50000, 9000, 3),
+(3, 16, '2019-07-05 15:34:19', 58000, 60000, 2000, 3),
+(4, 23, '2019-07-05 16:53:57', 58000, 60000, 2000, 3);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pemeriksaan`
+-- Struktur dari tabel `pemeriksaan`
 --
 
 CREATE TABLE `pemeriksaan` (
@@ -249,17 +310,19 @@ CREATE TABLE `pemeriksaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pemeriksaan`
+-- Dumping data untuk tabel `pemeriksaan`
 --
 
 INSERT INTO `pemeriksaan` (`id_pemeriksaan`, `id_antrian`, `id_user`, `pemeriksaan`, `tensi`, `suhu_badan`) VALUES
-(5, 11, 3, 'Fisik', '120/90', 37),
-(6, 12, 3, 'fisik', '120/90', 36);
+(26, 16, 3, 'fisik', '150/120', 35),
+(27, 23, 3, 'fisik', '140/110', 35),
+(28, 24, 3, 'fisik', '120/100', 35),
+(29, 25, 3, 'fisik', '120/100', 35);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resep`
+-- Struktur dari tabel `resep`
 --
 
 CREATE TABLE `resep` (
@@ -269,17 +332,19 @@ CREATE TABLE `resep` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `resep`
+-- Dumping data untuk tabel `resep`
 --
 
 INSERT INTO `resep` (`id_resep`, `id_pemeriksaan`, `harga_resep`) VALUES
-(5, 5, 8000),
-(6, 6, 2000);
+(26, 26, 8000),
+(27, 27, 8000),
+(28, 28, 1000),
+(29, 29, 9000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `satuan_obat`
+-- Struktur dari tabel `satuan_obat`
 --
 
 CREATE TABLE `satuan_obat` (
@@ -289,7 +354,7 @@ CREATE TABLE `satuan_obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `satuan_obat`
+-- Dumping data untuk tabel `satuan_obat`
 --
 
 INSERT INTO `satuan_obat` (`id_satuan`, `satuan`, `status`) VALUES
@@ -302,7 +367,7 @@ INSERT INTO `satuan_obat` (`id_satuan`, `satuan`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tindakan`
+-- Struktur dari tabel `tindakan`
 --
 
 CREATE TABLE `tindakan` (
@@ -313,19 +378,20 @@ CREATE TABLE `tindakan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tindakan`
+-- Dumping data untuk tabel `tindakan`
 --
 
 INSERT INTO `tindakan` (`id_tindakan`, `id_pemeriksaan`, `id_pelayanan`, `subtotal`) VALUES
-(7, 5, 2, 60000),
-(8, 5, 3, 100000),
-(9, 5, 1, 20000),
-(10, 6, 1, 20000);
+(13, 26, 4, 50000),
+(14, 27, 4, 50000),
+(15, 28, 5, 40000),
+(16, 29, 4, 50000),
+(17, 29, 6, 50000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -344,7 +410,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `tgl_lahir`, `gender`, `alamat`, `no_hp`, `agama`, `foto`, `username`, `password`, `level`, `status`) VALUES
@@ -356,19 +422,37 @@ INSERT INTO `user` (`id_user`, `nama`, `tgl_lahir`, `gender`, `alamat`, `no_hp`,
 (6, 'kevin', '2222-02-01', 'Laki-laki', 'jl.mastrip', '083847182005', 'Islam', 'default.jpg', 'kevin', '$2y$10$z6eCAXSBnZZGShgTySWVyutxHtP2SfE8.ZuS.hl1/qy0SSRkMHkC.', 'Admin', 'Non Aktif'),
 (7, 'david', '2019-04-12', 'Laki-laki', 'jl mastrip', '085111156789', 'Islam', 'face1.jpg', 'david', '$2y$10$abYyOOrkLIlDeVZNkBSdZutS.lrkzOC8Z14E.PIyzIqSheU4nanKS', 'Admin', 'Aktif');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `getallkunjungan`
+--
+DROP TABLE IF EXISTS `getallkunjungan`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `getallkunjungan`  AS  select `a`.`waktu` AS `waktu`,`a`.`keluhan` AS `keluhan`,`p`.`nama` AS `nama`,(year(curdate()) - year(`p`.`tgl_lahir`)) AS `usia`,`p`.`gender` AS `gender`,`p`.`alamat` AS `alamat` from (`antrian` `a` join `pasien` `p` on((`p`.`id_pasien` = `a`.`id_pasien`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `getallpembayaran`
+--
+DROP TABLE IF EXISTS `getallpembayaran`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `getallpembayaran`  AS  select `pb`.`waktu` AS `waktu`,`pb`.`grand_total` AS `grand_total`,`pb`.`total_bayar` AS `total_bayar`,`pb`.`kembalian` AS `kembalian`,`p`.`nama` AS `nama` from ((`pembayaran` `pb` join `antrian` `a` on((`pb`.`id_antrian` = `a`.`id_antrian`))) join `pasien` `p` on((`p`.`id_pasien` = `a`.`id_pasien`))) ;
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `antrian`
+-- Indeks untuk tabel `antrian`
 --
 ALTER TABLE `antrian`
   ADD PRIMARY KEY (`id_antrian`),
   ADD KEY `id_pasien` (`id_pasien`);
 
 --
--- Indexes for table `detail_diagnosa`
+-- Indeks untuk tabel `detail_diagnosa`
 --
 ALTER TABLE `detail_diagnosa`
   ADD PRIMARY KEY (`id_detail`),
@@ -376,7 +460,7 @@ ALTER TABLE `detail_diagnosa`
   ADD KEY `id_diagnosa` (`id_diagnosa`);
 
 --
--- Indexes for table `detail_resep`
+-- Indeks untuk tabel `detail_resep`
 --
 ALTER TABLE `detail_resep`
   ADD PRIMARY KEY (`id_detail`),
@@ -384,19 +468,19 @@ ALTER TABLE `detail_resep`
   ADD KEY `id_obat` (`id_obat`);
 
 --
--- Indexes for table `diagnosa`
+-- Indeks untuk tabel `diagnosa`
 --
 ALTER TABLE `diagnosa`
   ADD PRIMARY KEY (`id_diagnosa`);
 
 --
--- Indexes for table `kategori_obat`
+-- Indeks untuk tabel `kategori_obat`
 --
 ALTER TABLE `kategori_obat`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indexes for table `obat`
+-- Indeks untuk tabel `obat`
 --
 ALTER TABLE `obat`
   ADD PRIMARY KEY (`id_obat`),
@@ -405,19 +489,19 @@ ALTER TABLE `obat`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `pasien`
+-- Indeks untuk tabel `pasien`
 --
 ALTER TABLE `pasien`
   ADD PRIMARY KEY (`id_pasien`);
 
 --
--- Indexes for table `pelayanan`
+-- Indeks untuk tabel `pelayanan`
 --
 ALTER TABLE `pelayanan`
   ADD PRIMARY KEY (`id_pelayanan`);
 
 --
--- Indexes for table `pembayaran`
+-- Indeks untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`id_pembayaran`),
@@ -425,7 +509,7 @@ ALTER TABLE `pembayaran`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `pemeriksaan`
+-- Indeks untuk tabel `pemeriksaan`
 --
 ALTER TABLE `pemeriksaan`
   ADD PRIMARY KEY (`id_pemeriksaan`),
@@ -433,20 +517,20 @@ ALTER TABLE `pemeriksaan`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `resep`
+-- Indeks untuk tabel `resep`
 --
 ALTER TABLE `resep`
   ADD PRIMARY KEY (`id_resep`),
   ADD KEY `id_pemeriksaan` (`id_pemeriksaan`);
 
 --
--- Indexes for table `satuan_obat`
+-- Indeks untuk tabel `satuan_obat`
 --
 ALTER TABLE `satuan_obat`
   ADD PRIMARY KEY (`id_satuan`);
 
 --
--- Indexes for table `tindakan`
+-- Indeks untuk tabel `tindakan`
 --
 ALTER TABLE `tindakan`
   ADD PRIMARY KEY (`id_tindakan`),
@@ -454,125 +538,125 @@ ALTER TABLE `tindakan`
   ADD KEY `id_pelayanan` (`id_pelayanan`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `antrian`
+-- AUTO_INCREMENT untuk tabel `antrian`
 --
 ALTER TABLE `antrian`
-  MODIFY `id_antrian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_antrian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `detail_diagnosa`
+-- AUTO_INCREMENT untuk tabel `detail_diagnosa`
 --
 ALTER TABLE `detail_diagnosa`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `detail_resep`
+-- AUTO_INCREMENT untuk tabel `detail_resep`
 --
 ALTER TABLE `detail_resep`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `diagnosa`
+-- AUTO_INCREMENT untuk tabel `diagnosa`
 --
 ALTER TABLE `diagnosa`
-  MODIFY `id_diagnosa` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_diagnosa` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `kategori_obat`
+-- AUTO_INCREMENT untuk tabel `kategori_obat`
 --
 ALTER TABLE `kategori_obat`
   MODIFY `id_kategori` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `obat`
+-- AUTO_INCREMENT untuk tabel `obat`
 --
 ALTER TABLE `obat`
   MODIFY `id_obat` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `pasien`
+-- AUTO_INCREMENT untuk tabel `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `pelayanan`
+-- AUTO_INCREMENT untuk tabel `pelayanan`
 --
 ALTER TABLE `pelayanan`
-  MODIFY `id_pelayanan` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pelayanan` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `pembayaran`
+-- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `pemeriksaan`
+-- AUTO_INCREMENT untuk tabel `pemeriksaan`
 --
 ALTER TABLE `pemeriksaan`
-  MODIFY `id_pemeriksaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pemeriksaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT for table `resep`
+-- AUTO_INCREMENT untuk tabel `resep`
 --
 ALTER TABLE `resep`
-  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT for table `satuan_obat`
+-- AUTO_INCREMENT untuk tabel `satuan_obat`
 --
 ALTER TABLE `satuan_obat`
   MODIFY `id_satuan` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT for table `tindakan`
+-- AUTO_INCREMENT untuk tabel `tindakan`
 --
 ALTER TABLE `tindakan`
-  MODIFY `id_tindakan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_tindakan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `antrian`
+-- Ketidakleluasaan untuk tabel `antrian`
 --
 ALTER TABLE `antrian`
   ADD CONSTRAINT `antrian_ibfk_1` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id_pasien`);
 
 --
--- Constraints for table `detail_diagnosa`
+-- Ketidakleluasaan untuk tabel `detail_diagnosa`
 --
 ALTER TABLE `detail_diagnosa`
   ADD CONSTRAINT `detail_diagnosa_ibfk_1` FOREIGN KEY (`id_pemeriksaan`) REFERENCES `pemeriksaan` (`id_pemeriksaan`),
   ADD CONSTRAINT `detail_diagnosa_ibfk_2` FOREIGN KEY (`id_diagnosa`) REFERENCES `diagnosa` (`id_diagnosa`);
 
 --
--- Constraints for table `detail_resep`
+-- Ketidakleluasaan untuk tabel `detail_resep`
 --
 ALTER TABLE `detail_resep`
   ADD CONSTRAINT `detail_resep_ibfk_1` FOREIGN KEY (`id_resep`) REFERENCES `resep` (`id_resep`),
   ADD CONSTRAINT `detail_resep_ibfk_2` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`);
 
 --
--- Constraints for table `obat`
+-- Ketidakleluasaan untuk tabel `obat`
 --
 ALTER TABLE `obat`
   ADD CONSTRAINT `obat_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori_obat` (`id_kategori`),
@@ -580,27 +664,27 @@ ALTER TABLE `obat`
   ADD CONSTRAINT `obat_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Constraints for table `pembayaran`
+-- Ketidakleluasaan untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
   ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`id_antrian`) REFERENCES `antrian` (`id_antrian`);
 
 --
--- Constraints for table `pemeriksaan`
+-- Ketidakleluasaan untuk tabel `pemeriksaan`
 --
 ALTER TABLE `pemeriksaan`
   ADD CONSTRAINT `pemeriksaan_ibfk_1` FOREIGN KEY (`id_antrian`) REFERENCES `antrian` (`id_antrian`),
   ADD CONSTRAINT `pemeriksaan_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Constraints for table `resep`
+-- Ketidakleluasaan untuk tabel `resep`
 --
 ALTER TABLE `resep`
   ADD CONSTRAINT `resep_ibfk_1` FOREIGN KEY (`id_pemeriksaan`) REFERENCES `pemeriksaan` (`id_pemeriksaan`);
 
 --
--- Constraints for table `tindakan`
+-- Ketidakleluasaan untuk tabel `tindakan`
 --
 ALTER TABLE `tindakan`
   ADD CONSTRAINT `tindakan_ibfk_1` FOREIGN KEY (`id_pemeriksaan`) REFERENCES `pemeriksaan` (`id_pemeriksaan`),

@@ -57,3 +57,7 @@ $route['login'] = 'welcome/index';
 $route['laporan-kunjungan/all'] = 'LaporanKunjungan';
 $route['laporan-kunjungan/perhari'] = 'LaporanKunjungan/perhari';
 $route['laporan-kunjungan/perbulan'] = 'LaporanKunjungan/perbulan';
+//laporan pembayaran
+$route['laporan-pembayaran/all'] = 'LaporanPembayaran';
+$route['laporan-pembayaran/perhari'] = 'LaporanPembayaran/perhari';
+$route['laporan-pembayaran/perbulan'] = 'LaporanPembayaran/perbulan';
