@@ -32,6 +32,18 @@
                             <div class="col-md-1">
                               <button type="submit" class="btn btn-sm btn-success" style="margin-top:32px;"><i class="fa fa-filter"></i> Filter</button>
                             </div>
+                            <?php
+                            if (!empty($_GET['dari']) && !empty($_GET['sampai'])) {
+                            ?>
+                              <div class="col-sm-1 ml-auto">
+                                <a style="margin-top:35px;" href="<?= base_url().'laporankunjungan/printall?dari='.$_GET['dari'].'&sampai='.$_GET['sampai'] ?>" class="btn btn-xs btn-info"><i class="fa fa-print"></i>Cetak</a>
+                              </div>
+                              <div class="col-sm-1">
+                                <a style="margin-top:35px;" href="<?= base_url().'laporankunjungan/printall?dari='.$_GET['dari'].'&sampai='.$_GET['sampai'].'&xls=true' ?>" class="btn btn-xs btn-info"><i class="fa fa-file-excel-o"></i>XLS</a>
+                              </div>
+                            <?php
+                            }
+                            ?>
                          </div>
                     </form>
                     <br>

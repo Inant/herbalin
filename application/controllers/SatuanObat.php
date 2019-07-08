@@ -15,7 +15,11 @@ class SatuanObat extends CI_Controller
     public function index()
     {
         $title = array('title'=> 'Satuan Obat');
-        $data['satuan_obat'] = $this->MainModel->getData('*', 'satuan_obat', '', '', '');
+        $where="";
+        if (!empty($_GET['keyword'])) {
+            $where = "satuan LIKE '%$_GET[keyword]%'";
+        }
+        $data['satuan_obat'] = $this->MainModel->getData('*', 'satuan_obat', '', $where, '');
         $this->load->view('partials/menu', $title);
         $this->load->view('satuan-obat/list', $data);
         $this->load->view('partials/footer');

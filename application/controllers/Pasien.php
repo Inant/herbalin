@@ -14,7 +14,11 @@ class Pasien extends CI_Controller
     public function index()
     {
         $title = array('title' => 'Pasien');
-        $data['pasien'] = $this->MainModel->getData('*', 'pasien', '', '', '');
+        $where="";
+        if (!empty($_GET['keyword'])) {
+            $where = "nama LIKE '%$_GET[keyword]%'";
+        }
+        $data['pasien'] = $this->MainModel->getData('*', 'pasien', '', $where, '');
         $this->load->view('partials/menu', $title);
         $this->load->view('pasien/list', $data);
         $this->load->view('partials/footer');
@@ -224,7 +228,7 @@ class Pasien extends CI_Controller
         $title['title'] = 'Riwayat Pasien';
         $data['pasien'] = $this->MainModel->getData('pasien.*, YEAR(CURDATE()) - YEAR(tgl_lahir) as usia', 'pasien', '', ['id_pasien' => $id], '');
 
-        $data['history'] = $this->MainModel->getData('a.id_antrian, a.waktu, a.keluhan', 'antrian a', '', ['id_pasien' => $id], ['a.id_antrian', 'DESC']);
+        $data['history'] = $this->MainModel->getData('a.id_antrian, a.waktu, a.keluhan', 'antrian a', ['pemeriksaan pm', 'pm.id_antrian = a.id_antrian'], ['id_pasien' => $id], ['a.id_antrian', 'DESC']);
 
         $this->load->view('partials/menu',$title);
         $this->load->view('pasien/riwayat', $data);

@@ -16,9 +16,15 @@
                     ?>
                     <form action="" method="get">
                         <div class="row">
+                            <?php
+                            if ($this->session->userdata('level') == 'Resepsionis') {
+                                ?>
                             <div class="col-sm-2">
                                 <a href="<?= base_url(). 'pasien/create' ?>" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i>Tambah</a>
                             </div>
+                            <?php
+                            }
+                            ?>
                             <div class="col-md-3 ml-auto">
                                 <div class="input-group">
                                     <input type="text" name="keyword" id="keyword" class="form-control small" value="<?= isset  ($_GET['keyword']) ? $_GET['keyword'] : ''  ?>" placeholder="Cari...">
@@ -71,12 +77,22 @@
                                     <td><?= $key['status_perkawinan'] ?></td>
                                     <td><span class="<?= $statusClass ?>"><?= $key['status'] ?></span></td>
                                     <td>
+                                    <?php
+                                    if ($this->session->userdata('level') == 'Resepsionis') {
+                                        ?>
                                         <a href="<?= base_url(). 'pasien/edit/'.$key['id_pasien'] ?>">
                                             <button class="btn btn-primary btn-sm"> Edit </button>
                                         </a>
+                                    <?php
+                                    }
+                                    if ($this->session->userdata('level') == 'Admin') {
+                                        ?>
                                         <a href="<?= base_url(). 'pasien/riwayat/'.$key['id_pasien'] ?>">
                                             <button class="btn btn-info btn-sm"> Riwayat </button>
                                         </a>
+                                    <?php
+                                    }
+                                    ?>
                                     </td>
                                 </tr>
                             <?php

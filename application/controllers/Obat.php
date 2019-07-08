@@ -14,7 +14,11 @@
         public function index()
         {
             $title = array('title' => 'Obat');
-            $data['obat'] = $this->db->query("SELECT o.*, s.satuan, k.kategori, u.nama as nama_user FROM obat o INNER JOIN satuan_obat s ON s.id_satuan = o.id_satuan INNER JOIN kategori_obat k ON k.id_kategori = o.id_kategori INNER JOIN user u ON o.id_user = u.id_user")->result_array();
+            $where="";
+            if (!empty($_GET['keyword'])) {
+                $where = "where o.nama LIKE '%$_GET[keyword]%'";
+            }
+            $data['obat'] = $this->db->query("SELECT o.*, s.satuan, k.kategori, u.nama as nama_user FROM obat o INNER JOIN satuan_obat s ON s.id_satuan = o.id_satuan INNER JOIN kategori_obat k ON k.id_kategori = o.id_kategori INNER JOIN user u ON o.id_user = u.id_user $where ")->result_array();
             $this->load->view('partials/menu', $title);
             $this->load->view('obat/list', $data);
             $this->load->view('partials/footer');

@@ -8,7 +8,7 @@
                 <h5>Pemeriksaan</h5>
               </div>
               <div class="col-2 ml-auto">
-                <a href="<?= base_url(). 'riwayat/'.$pemeriksaan[0]['id_pasien'] ?>">
+                <a href="<?= base_url(). 'pemeriksaan/riwayat/'.$pemeriksaan[0]['id_pasien'] ?>">
                   <button class="btn btn-success btn-sm"><i class="mdi mdi-history"></i> Lihat Riwayat</button>
                 </a>
               </div>

@@ -13,7 +13,11 @@ class Diagnosa extends CI_controller
     public function index()
     {
         $title = array('title' => 'Diagnosa');
-        $data['diagnosa'] = $this->MainModel->getData('*', 'diagnosa', '', '', '');
+        $where="";
+        if (!empty($_GET['keyword'])) {
+            $where = "nama LIKE '%$_GET[keyword]%'";
+        }
+        $data['diagnosa'] = $this->MainModel->getData('*', 'diagnosa', '', $where, '');
         $this->load->view('partials/menu', $title);
         $this->load->view('diagnosa/list', $data);
         $this->load->view('partials/footer');
@@ -99,8 +103,11 @@ class Diagnosa extends CI_controller
     public function laporanDiagnosa()
     {
         $title= array('title' => 'Laporan Diagnosa');
-        
-        $data['laporandiagnosa'] = $this->MainModel->getData('*', 'getlaporandiagnosa', '', '', ['nama', 'ASC']);
+        $where="";
+        if (!empty($_GET['keyword'])) {
+            $where = "nama LIKE '%$_GET[keyword]%'";
+        }
+        $data['laporandiagnosa'] = $this->MainModel->getData('*', 'getlaporandiagnosa', '', $where, ['nama', 'ASC']);
         // $data['diagnosa'] = $this->MainModel->getData('*', 'diagnosa', '', '', ['nama', 'ASC']);
         $this->load->view('partials/menu', $title);
         $this->load->view('diagnosa/laporan-diagnosa', $data);

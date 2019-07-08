@@ -16,9 +16,15 @@
                     ?>
                     <form action="" method="get">
                         <div class="row">
+                            <?php
+                            if ($this->session->userdata('level') == 'Resepsionis') {
+                            ?>
                             <div class="col-sm-2 ">
                                 <a href="<?= base_url(). 'antrian/create' ?>" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Tambah</a>
                             </div>
+                            <?php
+                            }
+                            ?>
                             <div class="col-md-3 ml-auto">
                                 <div class="input-group">
                                     <input type="text" name="keyword" id="keyword" class="form-control small" value="<?= isset($_GET['keyword']) ? $_GET['keyword'] : ''  ?>" placeholder="Cari...">

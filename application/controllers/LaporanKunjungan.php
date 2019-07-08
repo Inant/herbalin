@@ -63,4 +63,18 @@ class LaporanKunjungan extends CI_Controller
         $this->load->view('partials/footer');
     }
 
+    public function printAll()
+    {
+        $title= array('title' => 'Cetak Laporan Kunjungan');
+
+        $where = "";
+        if (!empty($_GET['dari']) && !empty($_GET['sampai'])) {
+          $where = "waktu BETWEEN '$_GET[dari] 00:00:00' AND '$_GET[sampai] 23:59:59'";
+        }
+        
+        $data['kunjungan'] = $this->MainModel->getData('*', 'getallkunjungan', '', $where, ['waktu', 'DESC']);
+        // $data['diagnosa'] = $this->MainModel->getData('*', 'diagnosa', '', '', ['nama', 'ASC']);
+        $this->load->view('laporan-kunjungan/print-all', $data);
+    }
+
 }

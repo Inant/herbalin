@@ -233,4 +233,21 @@ class Pemeriksaan extends CI_Controller
       return json_encode($satuan);
     }
 
+    public function riwayat($id = null)
+    {
+        if ($id == null) {
+            rediredt(base_url(). 'pasien');
+        }
+        $title['title'] = 'Riwayat Pasien';
+        $data['pasien'] = $this->MainModel->getData('pasien.*, YEAR(CURDATE()) - YEAR(tgl_lahir) as usia', 'pasien', '', ['id_pasien' => $id], '');
+
+        $data['history'] = $this->MainModel->getData('a.id_antrian, a.waktu, a.keluhan', 'antrian a', ['pemeriksaan pm', 'pm.id_antrian = a.id_antrian'], ['id_pasien' => $id], ['a.id_antrian', 'DESC']);
+
+        $data['jml_kunjungan'] = $this->MainModel->getData('COUNT(id_pasien) as jml', 'antrian', '', ['id_pasien' => $id], '');
+
+        $this->load->view('partials/menu',$title);
+        $this->load->view('pemeriksaan/riwayat', $data);
+        $this->load->view('partials/footer');
+    }
+
 }

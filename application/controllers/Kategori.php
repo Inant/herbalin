@@ -13,7 +13,11 @@ class Kategori extends CI_Controller
     public function index()
     {
         $title = array('title' => 'Kategori');
-        $data['kategori'] = $this->MainModel->getData('*', 'kategori_obat', '', '', '');
+        $where="";
+        if (!empty($_GET['keyword'])) {
+            $where = "kategori LIKE '%$_GET[keyword]%'";
+        }
+        $data['kategori'] = $this->MainModel->getData('*', 'kategori_obat', '', $where, '');
         $this->load->view('partials/menu', $title);
         $this->load->view('kategori/list', $data);
         $this->load->view('partials/footer');

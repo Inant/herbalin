@@ -14,7 +14,11 @@ class Pelayanan extends CI_Controller
     public function index()
     {
         $title= array('title' => 'Pelayanan');
-        $data['pelayanan'] = $this->MainModel->getData('*', 'pelayanan', '', '', '');
+        $where="";
+        if (!empty($_GET['keyword'])) {
+            $where = "nama LIKE '%$_GET[keyword]%'";
+        }
+        $data['pelayanan'] = $this->MainModel->getData('*', 'pelayanan', '', $where, '');
         $this->load->view('partials/menu', $title);
         $this->load->view('pelayanan/list', $data);
         $this->load->view('partials/footer');

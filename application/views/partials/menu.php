@@ -243,8 +243,9 @@
             </a>
           </li>
           <?php    
-            }
-          ?>
+          }
+          if ($this->session->userdata('level') == "Admin" || $this->session->userdata('level') == "Farmasi") {
+              ?>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#obat" aria-expanded="false" aria-controls="obat">
               <i class="menu-icon mdi mdi-pill"></i>
@@ -254,35 +255,37 @@
             <div class="collapse" id="obat">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                <a href="<?= base_url().'satuanobat' ?>"class="nav-link">Satuan Obat</a>
+                  <a href="<?= base_url().'satuanobat' ?>"class="nav-link">Satuan Obat</a>
                 </li>
                 <li class="nav-item">
                   <a href="<?= base_url().'kategori' ?>"class="nav-link">Kategori Obat</a>
                 </li>
                 <li class="nav-item">
-                <a href="<?= base_url().'obat' ?>"class="nav-link">Obat</a>
+                  <a href="<?= base_url().'obat' ?>"class="nav-link">Obat</a>
                 </li>
                 <li class="nav-item">
-                <a href="<?= base_url().'obat/kadaluarsa' ?>"class="nav-link">Obat Kadaluarsa</a>
+                  <a href="<?= base_url().'obat/kadaluarsa' ?>"class="nav-link">Obat Kadaluarsa</a>
                 </li>
                 <li class="nav-item">
-                <a href="<?= base_url().'obat/keluar' ?>"class="nav-link">Obat Keluar</a>
+                  <a href="<?= base_url().'obat/keluar' ?>"class="nav-link">Obat Keluar</a>
                 </li>
               </ul>
             </div>
           </li>
+          <?php
+          }
+          if ($this->session->userdata('level') == "Admin" || $this->session->userdata('level') == "Resepsionis") {
+              ?>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url(). 'pasien' ?>">
               <i class="menu-icon mdi mdi-wheelchair-accessibility"></i>
               <span class="menu-title">Pasien</span>
             </a>
           </li>
-          <!-- <li class="nav-item">
-          <a href="<?= base_url().'diagnosa' ?>" class="nav-link">
-              <i class="menu-icon mdi mdi-heart-pulse"></i>
-              <span class="menu-title">Diagnosa</span>
-            </a>
-          </li> -->
+          <?php
+          }
+          if ($this->session->userdata('level') == "Admin") {
+              ?>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#diagnosa" aria-expanded="false" aria-controls="diagnosa">
               <i class="menu-icon mdi mdi-heart-pulse"></i>
@@ -306,24 +309,40 @@
               <span class="menu-title">Pelayanan</span>
             </a>
           </li>
+          <?php
+          }
+          if ($this->session->userdata('level') == "Resepsionis" || $this->session->userdata('level') == "Perawat") {
+              ?>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url().'antrian' ?>">
               <i class="menu-icon mdi mdi-account-multiple-plus"></i>
               <span class="menu-title">Antrian</span>
             </a>
           </li>
+          <?php
+          }
+          if ($this->session->userdata('level') == "Farmasi") {
+              ?>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url().'resep' ?>">
               <i class="menu-icon mdi mdi-receipt"></i>
               <span class="menu-title">Antrian Resep</span>
             </a>
           </li>
+          <?php
+          }
+          if ($this->session->userdata('level') == "kasir") {
+              ?>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url().'pembayaran' ?>">
               <i class="menu-icon mdi mdi-cash-usd"></i>
               <span class="menu-title">Antrian Pembayaran</span>
             </a>
           </li>
+          <?php
+          }
+          if ($this->session->userdata('level') == "Admin") {
+              ?>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#kunjungan" aria-expanded="false" aria-controls="kunjungan">
               <i class="menu-icon fa fa-file-pdf-o"></i>
@@ -364,6 +383,9 @@
               </ul>
             </div>
           </li>
+          <?php
+          }
+          ?>
         </ul>
       </nav>
       <!-- partial -->
