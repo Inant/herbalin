@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowes')
+defined('BASEPATH') or exit('No direct script access allowes');
 
 class Antrian extends CI_Controller
 {
