@@ -17,18 +17,6 @@
                               <input type="date" name="sampai" id="sampai" class="form-control small" value="<?= isset  ($_GET['sampai']) ? $_GET['sampai'] : ''  ?>">
                                 
                             </div>
-                            <!-- <div class="col-md-3">
-                              <label for="">Diagnosa</label>
-                              <select name="diagnosa" id="diagnosa" class="selectTwo form-control">
-                                <option value=""></option>
-                                <?php
-                                foreach ($diagnosa as $key => $value) {
-                                  $selected = isset($_GET['diagnosa']) && $_GET['diagnosa'] == $value['id_diagnosa'] ? 'selected' : '' ;
-                                  echo"<option value='$value[id_diagnosa]' $selected> $value[nama] </option>";
-                                }
-                                ?>
-                              </select>
-                            </div> -->
                             <div class="col-md-1">
                               <button type="submit" class="btn btn-sm btn-success" style="margin-top:32px;"><i class="fa fa-filter"></i> Filter</button>
                             </div>
